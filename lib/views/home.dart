@@ -39,17 +39,83 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: appBar(context),
+        foregroundColor: Colors.pink,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
       ),
+      endDrawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: CircleAvatar(
+                child: Text(
+                  '',
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.home,
+                color: Colors.black,
+              ),
+              title: Text(
+                'Trang chủ',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.play_arrow,
+                color: Colors.black,
+              ),
+              title: Text(
+                'Chơi ngay',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.account_box,
+                color: Colors.black,
+              ),
+              title: Text(
+                'Trang cá nhân',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            SizedBox(height: 30),
+            TextButton(
+              onPressed: () {},
+              child: const Text(
+                'Đăng xuất',
+                style: TextStyle(
+                  fontSize: 25,
+                  color: Colors.pink,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
       body: quizList(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CreateQuiz()));
-        },
+        onPressed: () {},
       ),
     );
   }
