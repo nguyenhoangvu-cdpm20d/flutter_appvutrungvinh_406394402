@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/home.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/signup.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 
@@ -63,7 +64,10 @@ class _SignInState extends State<SignIn> {
               ),
               SizedBox(height: 30),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (context) => Home()));
+                },
                 child: blueButton(
                   context,
                   "Đăng nhập",

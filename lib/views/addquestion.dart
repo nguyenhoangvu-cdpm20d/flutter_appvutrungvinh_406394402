@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/home.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 
 class AddQuestion extends StatefulWidget {
@@ -99,7 +100,8 @@ class _AddQuestionState extends State<AddQuestion> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pop(context);
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => Home()));
                   },
                   child: Container(
                     alignment: Alignment.center,

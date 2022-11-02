@@ -10,7 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late Stream quizStream;
+  Stream? quizStream;
   Widget quizList() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 24),

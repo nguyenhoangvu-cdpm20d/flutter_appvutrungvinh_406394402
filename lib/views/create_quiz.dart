@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/addquestion.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/signin.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 
@@ -81,7 +82,7 @@ class _CreateQuizState extends State<CreateQuiz> {
               GestureDetector(
                 onTap: () {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => SignIn()));
+                      MaterialPageRoute(builder: (context) => AddQuestion()));
                 },
                 child: blueButton(context, "Thêm trắc nghiệm"),
               ),
