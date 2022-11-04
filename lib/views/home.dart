@@ -64,11 +64,46 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: appBar(context),
-        foregroundColor: Colors.pink,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color.fromARGB(255, 244, 70, 128),
+        foregroundColor: Colors.white,
+        //backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
+        title: Row(
+          children: [
+            Container(
+              //padding: const EdgeInsets.only(left: 80),
+              child: RichText(
+                text: const TextSpan(
+                    style: TextStyle(fontSize: 30),
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: 'Quiz',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontFamily: '',
+                              color: Colors.black)),
+                      TextSpan(
+                          text: 'VTV',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontFamily: '',
+                              color: Color.fromARGB(255, 162, 4, 57))),
+                    ]),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.only(left: 108),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => searchSreen()));
+                },
+                icon: const Icon(Icons.search),
+              ),
+            ),
+          ],
+        ),
       ),
       endDrawer: Drawer(
         child: ListView(
