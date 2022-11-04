@@ -3,6 +3,8 @@ import 'package:flutter_appvutrungvinh_406394402/views/create_quiz.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/person.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/signin.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/searchSreen.dart';
+
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 class Home extends StatefulWidget {
@@ -177,6 +179,7 @@ class _HomeState extends State<Home> {
         child: Icon(Icons.add),
         onPressed: () {},
       ),*/
+
       body: getBody(),
       bottomNavigationBar: ConvexAppBar(
           style: TabStyle.flip,
