@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/create_quiz.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/person.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/signin.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -28,10 +31,31 @@ class _HomeState extends State<Home> {
                       title: snapshot.data.documents[index].data["quizTitle"],
                       quizid: snapshot.data.documents[index].data["quizId"],
                     );
-                  }));
+                  }),
+                );
         },
       ),
     );
+  }
+
+  int selectedIndex = 1;
+  final Widget _myHome = MyHome();
+  final Widget _myCategorys = MyCategorys();
+  final Widget _challenge = Challenge();
+  Widget getBody() {
+    if (selectedIndex == 1) {
+      return _myHome;
+    } else if (selectedIndex == 0) {
+      return _myCategorys;
+    } else {
+      return _challenge;
+    }
+  }
+
+  void onTapHandler(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
   }
 
   @override
@@ -95,28 +119,78 @@ class _HomeState extends State<Home> {
                 style: TextStyle(fontSize: 20),
               ),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Person()));
               },
             ),
             SizedBox(height: 30),
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Đăng xuất',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.pink,
+            ListTile(
+                leading: const Icon(
+                  Icons.output_rounded,
+                  color: Colors.red,
                 ),
-              ),
-            ),
+                title: const Text(
+                  'Đăng xuất',
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 20,
+                  ),
+                ),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Đăng xuất khỏi ứng dụng?'),
+                          icon: Icon(Icons.notifications),
+                          actionsAlignment: MainAxisAlignment.spaceBetween,
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, false);
+                                Navigator.pushAndRemoveUntil<void>(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    // ignore: prefer_const_constructors
+                                    builder: (BuildContext context) => SignIn(),
+                                  ),
+                                  (Route<dynamic> route) => false,
+                                );
+                              },
+                              child: const Text('Yes'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, false);
+                              },
+                              child: const Text('No'),
+                            ),
+                          ],
+                        );
+                      });
+                }),
           ],
         ),
       ),
-      body: quizList(),
+      /* body: quizList(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {},
-      ),
+      ),*/
+      body: getBody(),
+      bottomNavigationBar: ConvexAppBar(
+          style: TabStyle.flip,
+          backgroundColor: Colors.pink,
+          // ignore: prefer_const_literals_to_create_immutables
+          items: [
+            const TabItem(icon: Icons.list, title: 'Chủ đề'),
+            TabItem(icon: Icons.house, title: '            '),
+            TabItem(icon: Icons.gamepad_outlined, title: 'Thách đấu'),
+          ],
+          initialActiveIndex: 1,
+          onTap: (int index) {
+            onTapHandler(index);
+          }),
     );
   }
 }
@@ -184,5 +258,29 @@ class QuizTitle extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class MyHome extends StatelessWidget {
+  //Màn hình trang chủ
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text("Coming Soon"));
+  }
+}
+
+class MyCategorys extends StatelessWidget {
+  //Màn hình chủ đề
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text("Coming Soon"));
+  }
+}
+
+class Challenge extends StatelessWidget {
+  //Màn hình thách đấu
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text("Coming Soon"));
   }
 }
