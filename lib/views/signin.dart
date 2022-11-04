@@ -11,6 +11,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   late String email, password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +47,7 @@ class _SignInState extends State<SignIn> {
               SizedBox(
                 height: 10,
               ),
-              TextFormField(
+              /*TextFormField(
                 validator: (val) {
                   return val!.isEmpty ? "Mời nhập Password" : null;
                 },
@@ -61,6 +62,17 @@ class _SignInState extends State<SignIn> {
                 onChanged: (val) {
                   password = val;
                 },
+              ),*/
+              TextFormField(
+                obscureText: true,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30))),
+                  labelText: 'Password',
+                  prefixIcon: Icon(
+                    Icons.lock,
+                  ),
+                ),
               ),
               SizedBox(height: 30),
               GestureDetector(
