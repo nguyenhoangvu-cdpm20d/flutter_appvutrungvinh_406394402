@@ -27,7 +27,7 @@ class _PersonState extends State<Person> {
             Container(
               // padding: EdgeInsets.only(top: 0),
               child: Text(
-                'THÔNG TIN CÁ NHÂN ',
+                'THÔNG TIN CÁ NHÂN',
                 style: TextStyle(
                     fontSize: 30,
                     color: Colors.redAccent.shade700,

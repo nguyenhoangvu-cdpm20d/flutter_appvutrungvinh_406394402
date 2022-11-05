@@ -257,7 +257,7 @@ class Challenge extends StatelessWidget {
   //Màn hình thách đấu
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Màn hình thách đấu"));
+    return const Center(child: Text("Màn hình thách đấu "));
   }
 }
 
