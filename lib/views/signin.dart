@@ -47,6 +47,7 @@ class _SignInState extends State<SignIn> {
                 height: 10,
               ),
               TextFormField(
+                obscureText: true,
                 validator: (val) {
                   return val!.isEmpty ? "Mời nhập Password" : null;
                 },

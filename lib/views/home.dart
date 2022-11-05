@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/create_quiz.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/signin.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 
 class Home extends StatefulWidget {
@@ -49,33 +50,17 @@ class _HomeState extends State<Home> {
           children: [
             DrawerHeader(
               child: CircleAvatar(
-                child: Text(
-                  '',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
+                //backgroundColor: Colors.pinkAccent,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('images/123.JPG'),
+                  radius: 65.0,
                 ),
               ),
             ),
             ListTile(
               leading: Icon(
-                Icons.home,
-                color: Colors.black,
-              ),
-              title: Text(
-                'Trang chủ',
-                style: TextStyle(fontSize: 20),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(
                 Icons.play_arrow,
-                color: Colors.black,
+                color: Colors.pinkAccent,
               ),
               title: Text(
                 'Chơi ngay',
@@ -87,8 +72,21 @@ class _HomeState extends State<Home> {
             ),
             ListTile(
               leading: Icon(
+                Icons.settings,
+                color: Colors.pinkAccent,
+              ),
+              title: Text(
+                'Cài đặt',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(
                 Icons.account_box,
-                color: Colors.black,
+                color: Colors.pinkAccent,
               ),
               title: Text(
                 'Trang cá nhân',
@@ -100,7 +98,10 @@ class _HomeState extends State<Home> {
             ),
             SizedBox(height: 30),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => SignIn()));
+              },
               child: const Text(
                 'Đăng xuất',
                 style: TextStyle(
