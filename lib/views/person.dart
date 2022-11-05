@@ -81,7 +81,7 @@ class _PersonState extends State<Person> {
             Container(
               padding: EdgeInsets.only(top: 15),
               child: Text(
-                'Năm Sinh: 03/07/2002',
+                'Năm Sinh: 03/07/2002 ',
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 20,
