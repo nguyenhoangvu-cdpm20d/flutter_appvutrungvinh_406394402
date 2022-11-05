@@ -3,19 +3,22 @@ import 'package:flutter/material.dart';
 Widget appBar(BuildContext context) {
   return Center(
     child: RichText(
-      text: TextSpan(style: TextStyle(fontSize: 50), children: <TextSpan>[
+      text: const TextSpan(style: TextStyle(fontSize: 50), children: <TextSpan>[
         TextSpan(
-            text: 'Quiz',
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontFamily: '',
-                color: Colors.black54)),
+          text: 'Quiz',
+          style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontFamily: '',
+              color: Colors.black54),
+        ),
         TextSpan(
-            text: 'VTV',
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontFamily: '',
-                color: Colors.pinkAccent)),
+          text: 'VTV',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontFamily: '',
+            color: Color.fromARGB(255, 162, 4, 57),
+          ),
+        ),
       ]),
     ),
   );
