@@ -14,7 +14,7 @@ class _PersonState extends State<Person> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: appBar(context),
+        //title: appBar(context),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
@@ -25,16 +25,17 @@ class _PersonState extends State<Person> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.only(top: 45),
+              // padding: EdgeInsets.only(top: 0),
               child: Text(
-                'ThÔNG TIN CÁ NHÂN ',
+                'THÔNG TIN CÁ NHÂN ',
                 style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 30,
                     color: Colors.redAccent.shade700,
                     fontWeight: FontWeight.bold,
                     shadows: [
                       Shadow(
-                          color: Colors.red.shade300.withOpacity(0.3),
+                          color:
+                              Color.fromARGB(255, 170, 34, 34).withOpacity(0.3),
                           offset: Offset(15, 15),
                           blurRadius: 15)
                     ]),
@@ -48,7 +49,7 @@ class _PersonState extends State<Person> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 0),
+              padding: EdgeInsets.only(top: 10),
               child: Text(
                 'LE CHI TRUNG',
                 style: TextStyle(
@@ -58,7 +59,7 @@ class _PersonState extends State<Person> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 50),
+              padding: EdgeInsets.only(top: 40),
               child: Text(
                 'Giới Tính: Nam',
                 style: TextStyle(
@@ -70,7 +71,7 @@ class _PersonState extends State<Person> {
             Container(
               padding: EdgeInsets.only(top: 15),
               child: Text(
-                'SDT:0971971***',
+                'SDT: 0971971***',
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 20,
@@ -80,7 +81,7 @@ class _PersonState extends State<Person> {
             Container(
               padding: EdgeInsets.only(top: 15),
               child: Text(
-                'NS:03/07',
+                'Năm Sinh: 03/07/2002',
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 20,
@@ -90,7 +91,7 @@ class _PersonState extends State<Person> {
             Container(
               padding: EdgeInsets.all(15),
               child: Text(
-                'Tổng Điểm:4200',
+                'Tổng Điểm: 4200',
                 style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 20,

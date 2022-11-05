@@ -40,17 +40,24 @@ class _HomeState extends State<Home> {
     );
   }
 
-  int selectedIndex = 1;
+  int selectedIndex = 3;
   final Widget _myHome = MyHome();
-  final Widget _myCategorys = MyCategorys();
+  final Widget _mySearch = MySrearch();
   final Widget _challenge = Challenge();
+  final Widget _person = PerSon();
+  final Widget _friend = Friend();
+
   Widget getBody() {
-    if (selectedIndex == 1) {
-      return _myHome;
+    if (selectedIndex == 2) {
+      return _myHome; //trang chủ
     } else if (selectedIndex == 0) {
-      return _myCategorys;
+      return _mySearch; //tìm kiếm
+    } else if (selectedIndex == 1) {
+      return _challenge; //thách đấu
+    } else if (selectedIndex == 3) {
+      return _friend; //trang cá nhân
     } else {
-      return _challenge;
+      return _person; //bạn bè
     }
   }
 
@@ -72,10 +79,10 @@ class _HomeState extends State<Home> {
         title: Row(
           children: [
             Container(
-              //padding: const EdgeInsets.only(left: 80),
+              padding: const EdgeInsets.only(left: 45),
               child: RichText(
                 text: const TextSpan(
-                    style: TextStyle(fontSize: 30),
+                    style: TextStyle(fontSize: 50),
                     children: <TextSpan>[
                       TextSpan(
                           text: 'Quiz',
@@ -92,74 +99,12 @@ class _HomeState extends State<Home> {
                     ]),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.only(left: 108),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => searchSreen()));
-                },
-                icon: const Icon(Icons.search),
-              ),
-            ),
           ],
         ),
       ),
       endDrawer: Drawer(
         child: ListView(
           children: [
-            DrawerHeader(
-              child: CircleAvatar(
-                child: Text(
-                  '',
-                  style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.home,
-                color: Colors.black,
-              ),
-              title: Text(
-                'Trang chủ',
-                style: TextStyle(fontSize: 20),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.play_arrow,
-                color: Colors.black,
-              ),
-              title: Text(
-                'Chơi ngay',
-                style: TextStyle(fontSize: 20),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.account_box,
-                color: Colors.black,
-              ),
-              title: Text(
-                'Trang cá nhân',
-                style: TextStyle(fontSize: 20),
-              ),
-              onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Person()));
-              },
-            ),
             SizedBox(height: 30),
             ListTile(
                 leading: const Icon(
@@ -209,23 +154,19 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      /* body: quizList(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {},
-      ),*/
-
       body: getBody(),
       bottomNavigationBar: ConvexAppBar(
           style: TabStyle.flip,
           backgroundColor: Colors.pink,
           // ignore: prefer_const_literals_to_create_immutables
           items: [
-            const TabItem(icon: Icons.list, title: 'Chủ đề'),
-            TabItem(icon: Icons.house, title: '            '),
+            const TabItem(icon: Icons.search, title: 'Tìm Kiếm'),
             TabItem(icon: Icons.gamepad_outlined, title: 'Thách đấu'),
+            TabItem(icon: Icons.house, title: '            '),
+            TabItem(icon: Icons.person_pin, title: 'Bạn Bè'),
+            TabItem(icon: Icons.person_outline, title: 'Trang Cá Nhân'),
           ],
-          initialActiveIndex: 1,
+          initialActiveIndex: 2,
           onTap: (int index) {
             onTapHandler(index);
           }),
@@ -303,15 +244,12 @@ class MyHome extends StatelessWidget {
   //Màn hình trang chủ
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Coming Soon"));
-  }
-}
-
-class MyCategorys extends StatelessWidget {
-  //Màn hình chủ đề
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("Coming Soon"));
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
+      ),
+    );
   }
 }
 
@@ -319,6 +257,30 @@ class Challenge extends StatelessWidget {
   //Màn hình thách đấu
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Coming Soon"));
+    return const Center(child: Text("Màn hình thách đấu"));
+  }
+}
+
+class MySrearch extends StatelessWidget {
+  //Màn hình tìm kiếm
+  @override
+  Widget build(BuildContext context) {
+    return searchSreen();
+  }
+}
+
+class PerSon extends StatelessWidget {
+  //Màn hình trang cá nhân
+  @override
+  Widget build(BuildContext context) {
+    return Person();
+  }
+}
+
+class Friend extends StatelessWidget {
+  //Màn hình Bạn bè
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text("Màn hình bạn bè"));
   }
 }
