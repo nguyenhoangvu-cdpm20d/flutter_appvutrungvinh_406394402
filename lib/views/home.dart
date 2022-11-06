@@ -186,7 +186,7 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.pink,
           // ignore: prefer_const_literals_to_create_immutables
           items: [
-            const TabItem(icon: Icons.search, title: 'Tìm Kiếm'),
+            const TabItem(icon: Icons.search, title: 'Tìm Kiếm '),
             TabItem(icon: Icons.gamepad_outlined, title: 'Thách đấu'),
             TabItem(icon: Icons.house, title: '            '),
             TabItem(icon: Icons.person_pin, title: 'Bạn Bè'),
@@ -273,7 +273,10 @@ class MyHome extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => CreateQuiz()));
+        },
       ),
     );
   }

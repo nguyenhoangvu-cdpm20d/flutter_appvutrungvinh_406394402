@@ -92,7 +92,7 @@ class _SignInState extends State<SignIn> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Bạn chưa có tài khoản?",
+                    "Bạn chưa có tài khoản? ",
                     style: TextStyle(fontSize: 15.5),
                   ),
                   GestureDetector(

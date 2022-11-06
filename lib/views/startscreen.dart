@@ -22,7 +22,7 @@ class StartApp extends StatelessWidget {
               style: TextStyle(fontSize: 80),
               children: <TextSpan>[
                 TextSpan(
-                  text: 'Quiz',
+                  text: 'Quiz ',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontFamily: '',

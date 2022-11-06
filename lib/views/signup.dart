@@ -111,7 +111,7 @@ class _SignUpState extends State<SignUp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Bạn đã sẵn sàng tạo tài khoản chưa?",
+                    "Bạn đã sẵn sàng tạo tài khoản chưa? ",
                     style: TextStyle(fontSize: 15.5),
                   ),
                   GestureDetector(

@@ -11,7 +11,7 @@ class searchSreen extends StatelessWidget {
             const Expanded(
               child: TextField(
                 decoration: InputDecoration(
-                  hintText: 'Tìm kiếm ',
+                  hintText: 'Tìm kiếm',
                   //prefixIcon: Icon(Icons.search),
                   //  border: InputBorder.none,
                 ),
