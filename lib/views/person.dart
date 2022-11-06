@@ -49,7 +49,7 @@ class _PersonState extends State<Person> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 10),
+              padding: EdgeInsets.all(15),
               child: Text(
                 'LE CHI TRUNG',
                 style: TextStyle(
@@ -59,7 +59,7 @@ class _PersonState extends State<Person> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 40),
+              padding: EdgeInsets.all(15),
               child: Text(
                 'Giới Tính: Nam',
                 style: TextStyle(
@@ -69,7 +69,7 @@ class _PersonState extends State<Person> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 15),
+              padding: EdgeInsets.all(15),
               child: Text(
                 'SDT: 0971971***',
                 style: TextStyle(
@@ -79,7 +79,7 @@ class _PersonState extends State<Person> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 15),
+              padding: EdgeInsets.all(15),
               child: Text(
                 'Năm Sinh: 03/07/2002 ',
                 style: TextStyle(
@@ -97,7 +97,44 @@ class _PersonState extends State<Person> {
                     fontSize: 20,
                     color: Colors.pink.shade600),
               ),
-            )
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: Stack(
+                children: <Widget>[
+                  Positioned.fill(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: <Color>[
+                            Color.fromARGB(255, 255, 0, 149),
+                            Color.fromARGB(255, 255, 100, 170),
+                            Color.fromARGB(255, 255, 200, 225),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.all(16.0),
+                      textStyle: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () {},
+                    child: const Text(
+                      'Chỉnh sửa thông tin cá nhân',
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

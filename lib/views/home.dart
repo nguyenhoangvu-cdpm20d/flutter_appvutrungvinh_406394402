@@ -82,21 +82,24 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.only(left: 45),
               child: RichText(
                 text: const TextSpan(
-                    style: TextStyle(fontSize: 50),
-                    children: <TextSpan>[
-                      TextSpan(
-                          text: 'Quiz',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontFamily: '',
-                              color: Colors.black)),
-                      TextSpan(
-                          text: 'VTV',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontFamily: '',
-                              color: Color.fromARGB(255, 162, 4, 57))),
-                    ]),
+                  style: TextStyle(fontSize: 50),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: 'Quiz',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontFamily: '',
+                            color: Colors.black)),
+                    TextSpan(
+                      text: 'VTV',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontFamily: '',
+                        color: Color.fromARGB(255, 162, 4, 57),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -105,52 +108,75 @@ class _HomeState extends State<Home> {
       endDrawer: Drawer(
         child: ListView(
           children: [
-            SizedBox(height: 30),
-            ListTile(
+            Center(
+              child: ListTile(
                 leading: const Icon(
                   Icons.output_rounded,
                   color: Colors.red,
+                  size: 30,
                 ),
                 title: const Text(
                   'Đăng xuất',
                   style: TextStyle(
                     color: Colors.red,
-                    fontSize: 20,
+                    fontSize: 30,
                   ),
                 ),
                 onTap: () {
                   showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Đăng xuất khỏi ứng dụng?'),
-                          icon: Icon(Icons.notifications),
-                          actionsAlignment: MainAxisAlignment.spaceBetween,
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context, false);
-                                Navigator.pushAndRemoveUntil<void>(
-                                  context,
-                                  MaterialPageRoute<void>(
-                                    // ignore: prefer_const_constructors
-                                    builder: (BuildContext context) => SignIn(),
-                                  ),
-                                  (Route<dynamic> route) => false,
-                                );
-                              },
-                              child: const Text('Yes'),
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        backgroundColor: Color.fromARGB(255, 231, 69, 123),
+                        title: const Text(
+                          'Bạn có muốn đăng xuất?',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        icon: Icon(
+                          Icons.output_rounded,
+                          color: Colors.white,
+                        ),
+                        actionsAlignment: MainAxisAlignment.spaceBetween,
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context, false);
+                              Navigator.pushAndRemoveUntil<void>(
+                                context,
+                                MaterialPageRoute<void>(
+                                  // ignore: prefer_const_constructors
+                                  builder: (BuildContext context) => SignIn(),
+                                ),
+                                (Route<dynamic> route) => false,
+                              );
+                            },
+                            child: const Text(
+                              'Yes',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context, false);
-                              },
-                              child: const Text('No'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context, false);
+                            },
+                            child: const Text(
+                              'No',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
                             ),
-                          ],
-                        );
-                      });
-                }),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+            )
           ],
         ),
       ),
