@@ -24,7 +24,7 @@ class _SignInState extends State<SignIn> {
       body: Form(
         key: _formKey,
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 4),
+          margin: const EdgeInsets.symmetric(horizontal: 4),
           child: Column(
             children: [
               Spacer(),
@@ -44,7 +44,7 @@ class _SignInState extends State<SignIn> {
                   email = val;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               /*TextFormField(
@@ -74,7 +74,7 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               GestureDetector(
                 onTap: () {
                   Navigator.pushReplacement(
@@ -85,7 +85,7 @@ class _SignInState extends State<SignIn> {
                   "Đăng nhập",
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 18,
               ),
               Row(
@@ -108,7 +108,7 @@ class _SignInState extends State<SignIn> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 80,
               ),
             ],

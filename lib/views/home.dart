@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
   Stream? quizStream;
   Widget quizList() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 24),
+      margin: const EdgeInsets.symmetric(horizontal: 24),
       child: StreamBuilder(
         stream: quizStream,
         builder: (context, snapshot) {
@@ -71,7 +71,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 244, 70, 128),
+        backgroundColor: const Color.fromARGB(255, 244, 70, 128),
         foregroundColor: Colors.white,
         //backgroundColor: Colors.transparent,
         elevation: 0.0,
@@ -127,14 +127,15 @@ class _HomeState extends State<Home> {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        backgroundColor: Color.fromARGB(255, 231, 69, 123),
+                        backgroundColor:
+                            const Color.fromARGB(255, 231, 69, 123),
                         title: const Text(
                           'Bạn có muốn đăng xuất?',
                           style: TextStyle(
                             color: Colors.white,
                           ),
                         ),
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.output_rounded,
                           color: Colors.white,
                         ),
@@ -187,10 +188,10 @@ class _HomeState extends State<Home> {
           // ignore: prefer_const_literals_to_create_immutables
           items: [
             const TabItem(icon: Icons.search, title: 'Tìm Kiếm '),
-            TabItem(icon: Icons.gamepad_outlined, title: 'Thách đấu'),
-            TabItem(icon: Icons.house, title: '            '),
-            TabItem(icon: Icons.person_pin, title: 'Bạn Bè'),
-            TabItem(icon: Icons.person_outline, title: 'Trang Cá Nhân'),
+            const TabItem(icon: Icons.gamepad_outlined, title: 'Thách đấu'),
+            const TabItem(icon: Icons.house, title: '            '),
+            const TabItem(icon: Icons.person_pin, title: 'Bạn Bè'),
+            const TabItem(icon: Icons.person_outline, title: 'Trang Cá Nhân'),
           ],
           initialActiveIndex: 2,
           onTap: (int index) {
@@ -219,7 +220,7 @@ class QuizTitle extends StatelessWidget {
         //context, MaterialPageRoute(builder: (context) => PlayQuiz(quizid)));
       },
       child: Container(
-        margin: EdgeInsets.only(bottom: 8),
+        margin: const EdgeInsets.only(bottom: 8),
         height: 150,
         child: Stack(
           children: [
@@ -241,17 +242,17 @@ class QuizTitle extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 17,
                         fontWeight: FontWeight.w600),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 6,
                   ),
                   Text(
                     desc,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
                         fontSize: 17,
                         fontWeight: FontWeight.w600),

@@ -1,5 +1,10 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/editprofile.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/searchSreen.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
+
+import 'create_quiz.dart';
 
 class Person extends StatefulWidget {
   @override
@@ -34,22 +39,22 @@ class _PersonState extends State<Person> {
                     fontWeight: FontWeight.bold,
                     shadows: [
                       Shadow(
-                          color:
-                              Color.fromARGB(255, 170, 34, 34).withOpacity(0.3),
-                          offset: Offset(15, 15),
+                          color: const Color.fromARGB(255, 170, 34, 34)
+                              .withOpacity(0.3),
+                          offset: const Offset(15, 15),
                           blurRadius: 15)
                     ]),
               ),
             ),
             Container(
-              padding: EdgeInsets.only(bottom: 5, top: 30),
-              child: CircleAvatar(
+              padding: const EdgeInsets.only(bottom: 5, top: 30),
+              child: const CircleAvatar(
                 radius: 65.0,
                 //backgroundImage: AssetImage('images/123.jpg'),
               ),
             ),
             Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Text(
                 'LE CHI TRUNG',
                 style: TextStyle(
@@ -59,46 +64,50 @@ class _PersonState extends State<Person> {
               ),
             ),
             Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Text(
                 'Giới Tính: Nam',
                 style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                    color: Colors.pink.shade600),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  color: Colors.pink.shade600,
+                ),
               ),
             ),
             Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Text(
                 'SDT: 0971971***',
                 style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                    color: Colors.pink.shade600),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  color: Colors.pink.shade600,
+                ),
               ),
             ),
             Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Text(
                 'Năm Sinh: 03/07/2002 ',
                 style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                    color: Colors.pink.shade600),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  color: Colors.pink.shade600,
+                ),
               ),
             ),
             Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Text(
                 'Tổng Điểm: 4200 ',
                 style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                    color: Colors.pink.shade600),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 30,
+                  color: Color.fromARGB(255, 84, 0, 31),
+                ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             ClipRRect(
@@ -111,8 +120,8 @@ class _PersonState extends State<Person> {
                         gradient: LinearGradient(
                           colors: <Color>[
                             Color.fromARGB(255, 255, 0, 149),
-                            Color.fromARGB(255, 255, 100, 170),
-                            Color.fromARGB(255, 255, 200, 225),
+                            Color.fromARGB(255, 255, 0, 149),
+                            Color.fromARGB(255, 255, 0, 149),
                           ],
                         ),
                       ),
@@ -127,7 +136,14 @@ class _PersonState extends State<Person> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditProfile(),
+                        ),
+                      );
+                    },
                     child: const Text(
                       'Chỉnh sửa thông tin cá nhân',
                     ),
