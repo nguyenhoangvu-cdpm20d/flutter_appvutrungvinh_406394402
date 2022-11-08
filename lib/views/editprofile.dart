@@ -1,3 +1,4 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/home.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
@@ -9,7 +10,25 @@ class EditProfile extends StatefulWidget {
   State<EditProfile> createState() => EditProfileState();
 }
 
+enum SingingCharacter { Man, Woman }
+
 class EditProfileState extends State<EditProfile> {
+  SingingCharacter? _character = SingingCharacter.Woman;
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -25,12 +44,12 @@ class EditProfileState extends State<EditProfile> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              // padding: EdgeInsets.only(top: 0),
+            /*Container(
+              padding: EdgeInsets.only(top: 0),
               child: Text(
                 'CHỈNH SỬA THÔNG TIN CÁ NHÂN ',
                 style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 20,
                     color: Colors.redAccent.shade700,
                     fontWeight: FontWeight.bold,
                     shadows: [
@@ -48,7 +67,8 @@ class EditProfileState extends State<EditProfile> {
                 radius: 65.0,
                 //backgroundImage: AssetImage('images/123.jpg'),
               ),
-            ),
+            ),*/
+            //SizedBox(20),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -56,45 +76,100 @@ class EditProfileState extends State<EditProfile> {
                   padding: EdgeInsets.all(10),
                   child: TextField(
                     //controller: txtName,
-                    readOnly: true,
+                    readOnly: false,
                     decoration: InputDecoration(
                       labelText: 'Tên Người Dùng',
-                      border: OutlineInputBorder(),
+                      border: UnderlineInputBorder(),
                     ),
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
-                    //controller: txtEmail,
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: 'Giới Tính',
-                      border: OutlineInputBorder(),
-                    ),
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        title: const Text(
+                          'Giới tính:',
+                          style: TextStyle(
+                            fontSize: 17,
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        title: const Text('Nam'),
+                        leading: Radio<SingingCharacter>(
+                          value: SingingCharacter.Man,
+                          groupValue: _character,
+                          onChanged: (SingingCharacter? value) {
+                            setState(() {
+                              _character = value;
+                            });
+                          },
+                        ),
+                      ),
+                      ListTile(
+                        title: const Text('Nữ'),
+                        leading: Radio<SingingCharacter>(
+                          value: SingingCharacter.Woman,
+                          groupValue: _character,
+                          onChanged: (SingingCharacter? value) {
+                            setState(() {
+                              _character = value;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
-                    //controller: txtEmail,
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: 'Số Điện Thoại',
-                      border: OutlineInputBorder(),
-                    ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      TextField(
+                        keyboardType: TextInputType.number,
+                        //controller: txtEmail,
+                        readOnly: false,
+                        decoration: InputDecoration(
+                          labelText: 'Số Điện Thoại',
+                          border: UnderlineInputBorder(),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
-                    //controller: txtEmail,
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: 'Năm Sinh',
-                      border: OutlineInputBorder(),
-                    ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text(
+                        'Năm sinh: ' +
+                            "${selectedDate.toLocal()}".split(' ')[0],
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      TextButton(
+                        onPressed: () => _selectDate(context),
+                        child: Icon(Icons.edit_calendar_outlined),
+                      ),
+                    ],
                   ),
+                  /*child:
+                      TextField(
+                    //controller: txtEmail,
+                    readOnly: false,
+                    decoration: InputDecoration(
+                      labelText:
+                          "Năm sinh: ${selectedDate.toLocal()}".split(' ')[0],
+                      border: UnderlineInputBorder(),
+                    ),
+                  ),*/
                 ),
                 OutlinedButton(
                   onPressed: () {

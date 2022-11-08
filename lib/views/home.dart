@@ -105,9 +105,38 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      endDrawer: Drawer(
+      drawer: Drawer(
         child: ListView(
-          children: [
+          children: <Widget>[
+            Center(
+              child: ListTile(
+                title: const Text(
+                  'Chào mừng ....',
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 20,
+                  ),
+                ),
+                onTap: () {},
+              ),
+            ),
+            Center(
+              child: ListTile(
+                leading: const Icon(
+                  Icons.lock_sharp,
+                  color: Colors.black87,
+                  size: 30,
+                ),
+                title: const Text(
+                  'Quên mật khẩu',
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 25,
+                  ),
+                ),
+                onTap: () {},
+              ),
+            ),
             Center(
               child: ListTile(
                 leading: const Icon(
@@ -119,7 +148,7 @@ class _HomeState extends State<Home> {
                   'Đăng xuất',
                   style: TextStyle(
                     color: Colors.red,
-                    fontSize: 30,
+                    fontSize: 25,
                   ),
                 ),
                 onTap: () {
@@ -127,8 +156,7 @@ class _HomeState extends State<Home> {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        backgroundColor:
-                            const Color.fromARGB(255, 231, 69, 123),
+                        backgroundColor: Color.fromARGB(125, 254, 0, 85),
                         title: const Text(
                           'Bạn có muốn đăng xuất?',
                           style: TextStyle(
@@ -177,7 +205,7 @@ class _HomeState extends State<Home> {
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -275,7 +303,7 @@ class MyHome extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          Navigator.pushReplacement(
+          Navigator.push(
               context, MaterialPageRoute(builder: (context) => CreateQuiz()));
         },
       ),
