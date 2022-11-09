@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:flutter_appvutrungvinh_406394402/views/create_quiz.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/person.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/signin.dart';
+// ignore: unused_import
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/searchSreen.dart';
 
@@ -107,36 +109,18 @@ class _HomeState extends State<Home> {
       ),
       drawer: Drawer(
         child: ListView(
-          children: <Widget>[
-            Center(
-              child: ListTile(
-                title: const Text(
-                  'Chào mừng ....',
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 20,
-                  ),
+          children: [
+            DrawerHeader(
+              child: CircleAvatar(
+                //backgroundColor: Colors.pinkAccent,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('images/123.JPG'),
+                 radius: 65.0,
                 ),
                 onTap: () {},
               ),
             ),
-            Center(
-              child: ListTile(
-                leading: const Icon(
-                  Icons.lock_sharp,
-                  color: Colors.black87,
-                  size: 30,
-                ),
-                title: const Text(
-                  'Quên mật khẩu',
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 25,
-                  ),
-                ),
-                onTap: () {},
-              ),
-            ),
+            
             Center(
               child: ListTile(
                 leading: const Icon(
