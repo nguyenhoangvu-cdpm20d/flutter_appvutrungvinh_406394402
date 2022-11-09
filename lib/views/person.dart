@@ -1,5 +1,10 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/editprofile.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/searchSreen.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
+
+import 'create_quiz.dart';
 
 class Person extends StatefulWidget {
   @override
@@ -14,7 +19,7 @@ class _PersonState extends State<Person> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: appBar(context),
+        //title: appBar(context),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
@@ -25,30 +30,31 @@ class _PersonState extends State<Person> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.only(top: 45),
+              // padding: EdgeInsets.only(top: 0),
               child: Text(
-                'ThÔNG TIN CÁ NHÂN ',
+                'THÔNG TIN CÁ NHÂN ',
                 style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 30,
                     color: Colors.redAccent.shade700,
                     fontWeight: FontWeight.bold,
                     shadows: [
                       Shadow(
-                          color: Colors.red.shade300.withOpacity(0.3),
-                          offset: Offset(15, 15),
+                          color: const Color.fromARGB(255, 170, 34, 34)
+                              .withOpacity(0.3),
+                          offset: const Offset(15, 15),
                           blurRadius: 15)
                     ]),
               ),
             ),
             Container(
-              padding: EdgeInsets.only(bottom: 5, top: 30),
-              child: CircleAvatar(
+              padding: const EdgeInsets.only(bottom: 5, top: 30),
+              child: const CircleAvatar(
                 radius: 65.0,
                 //backgroundImage: AssetImage('images/123.jpg'),
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 0),
+              padding: const EdgeInsets.all(15),
               child: Text(
                 'LE CHI TRUNG',
                 style: TextStyle(
@@ -58,45 +64,93 @@ class _PersonState extends State<Person> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 50),
+              padding: const EdgeInsets.all(15),
               child: Text(
                 'Giới Tính: Nam',
                 style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                    color: Colors.pink.shade600),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  color: Colors.pink.shade600,
+                ),
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.all(15),
               child: Text(
-                'SDT:0971971***',
+                'SDT: 0971971***',
                 style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                    color: Colors.pink.shade600),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  color: Colors.pink.shade600,
+                ),
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.all(15),
               child: Text(
-                'NS:03/07',
+                'Năm Sinh: 03/07/2002 ',
                 style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                    color: Colors.pink.shade600),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20,
+                  color: Colors.pink.shade600,
+                ),
               ),
             ),
             Container(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: Text(
-                'Tổng Điểm:4200',
+                'Tổng Điểm: 4200 ',
                 style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20,
-                    color: Colors.pink.shade600),
+                  fontWeight: FontWeight.w500,
+                  fontSize: 30,
+                  color: Color.fromARGB(255, 84, 0, 31),
+                ),
               ),
-            )
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(30),
+              child: Stack(
+                children: <Widget>[
+                  Positioned.fill(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: <Color>[
+                            Color.fromARGB(255, 255, 0, 149),
+                            Color.fromARGB(255, 255, 0, 149),
+                            Color.fromARGB(255, 255, 0, 149),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.all(16.0),
+                      textStyle: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditProfile(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'Chỉnh sửa thông tin cá nhân',
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

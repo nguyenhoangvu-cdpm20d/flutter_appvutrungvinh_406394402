@@ -100,8 +100,48 @@ class _AddQuestionState extends State<AddQuestion> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => Home()));
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          backgroundColor: Color.fromARGB(125, 254, 0, 85),
+                          title: const Text(
+                            'Thêm câu hỏi thành công',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          icon: const Icon(
+                            Icons.check_circle,
+                            color: Colors.white,
+                          ),
+                          actionsAlignment: MainAxisAlignment.spaceBetween,
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, false);
+                                Navigator.pushAndRemoveUntil<void>(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    // ignore: prefer_const_constructors
+                                    builder: (BuildContext context) => Home(),
+                                  ),
+                                  (Route<dynamic> route) => false,
+                                );
+                              },
+                              child: const Text(
+                                '                                                                                       Ok',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   },
                   child: Container(
                     alignment: Alignment.center,

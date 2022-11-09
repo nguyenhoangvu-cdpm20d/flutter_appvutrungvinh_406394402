@@ -5,20 +5,25 @@ class searchSreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink,
+        backgroundColor: Colors.white,
         title: Row(
           children: [
             const Expanded(
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Tìm kiếm',
-
                   //prefixIcon: Icon(Icons.search),
-                  border: InputBorder.none,
+                  //  border: InputBorder.none,
                 ),
               ),
             ),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.clear))
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.clear,
+                color: Colors.black,
+              ),
+            )
           ],
         ),
       ),

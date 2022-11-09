@@ -43,7 +43,7 @@ class _SignUpState extends State<SignUp> {
                 },
               ),
               SizedBox(
-                height: 10,
+                height: 7,
               ),
               TextFormField(
                 validator: (val) {
@@ -62,7 +62,26 @@ class _SignUpState extends State<SignUp> {
                 },
               ),
               SizedBox(
-                height: 10,
+                height: 7,
+              ),
+              TextFormField(
+                validator: (val) {
+                  return val!.isEmpty ? "Mời nhập Password" : null;
+                },
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30))),
+                  labelText: "Password",
+                  prefixIcon: Icon(
+                    Icons.lock,
+                  ),
+                ),
+                onChanged: (val) {
+                  password = val;
+                },
+              ),
+              SizedBox(
+                height: 7,
               ),
               TextFormField(
                 validator: (val) {
@@ -92,7 +111,7 @@ class _SignUpState extends State<SignUp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Bạn đã sẵn sàng tạo tài khoản chưa?",
+                    "Bạn đã sẵn sàng tạo tài khoản chưa? ",
                     style: TextStyle(fontSize: 15.5),
                   ),
                   GestureDetector(

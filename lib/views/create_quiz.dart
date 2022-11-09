@@ -31,7 +31,7 @@ class _CreateQuizState extends State<CreateQuiz> {
                 validator: (val) =>
                     val!.isEmpty ? "Bạn hãy nhập Url ảnh" : null,
                 decoration: const InputDecoration(
-                  labelText: "Hình ảnh Url",
+                  labelText: "Hình ảnh Url ",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(30))),
                   prefixIcon: Icon(

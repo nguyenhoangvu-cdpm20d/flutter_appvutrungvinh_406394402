@@ -9,7 +9,7 @@ class StartApp extends StatelessWidget {
     AnimationController controller;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
       ),
       body: Center(
         child: TextButton(
