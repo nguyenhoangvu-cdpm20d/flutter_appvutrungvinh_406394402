@@ -18,19 +18,10 @@ class EditProfileState extends State<EditProfile> {
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate,
-      firstDate: DateTime(1900, 1),
-      lastDate: DateTime(2100, 12, 31),
-      helpText: 'Chọn Ngày Sinh',
-      fieldLabelText: 'Nhập Ngày Sinh',
-      fieldHintText: 'Tháng/Ngày/Năm',
-      errorFormatText: 'Không Hợp lệ',
-      errorInvalidText: 'Không Được Bỏ Trống',
-      //initialEntryMode: DatePickerEntryMode.input,
-      initialDatePickerMode: DatePickerMode.year,
-    );
-
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(1900, 1),
+        lastDate: DateTime(2100, 12, 31));
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
@@ -96,8 +87,8 @@ class EditProfileState extends State<EditProfile> {
                   padding: EdgeInsets.all(0),
                   child: Column(
                     children: <Widget>[
-                      const ListTile(
-                        title: Text(
+                      ListTile(
+                        title: const Text(
                           'Giới tính:',
                           style: TextStyle(
                             fontSize: 17,
@@ -105,7 +96,7 @@ class EditProfileState extends State<EditProfile> {
                         ),
                       ),
                       ListTile(
-                        title: Text('Nam'),
+                        title: const Text('Nam'),
                         leading: Radio<SingingCharacter>(
                           value: SingingCharacter.Man,
                           groupValue: _character,

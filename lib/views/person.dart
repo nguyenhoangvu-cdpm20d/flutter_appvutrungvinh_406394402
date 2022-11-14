@@ -56,7 +56,7 @@ class _PersonState extends State<Person> {
             Container(
               padding: const EdgeInsets.all(15),
               child: Text(
-                'User',
+                'LE CHI TRUNG',
                 style: TextStyle(
                     color: Colors.redAccent.shade700,
                     fontWeight: FontWeight.bold,
@@ -77,7 +77,7 @@ class _PersonState extends State<Person> {
             Container(
               padding: const EdgeInsets.all(15),
               child: Text(
-                'SDT: **********',
+                'SDT: 0971971***',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
@@ -88,7 +88,7 @@ class _PersonState extends State<Person> {
             Container(
               padding: const EdgeInsets.all(15),
               child: Text(
-                'Năm Sinh: dd/mm/yyyy ',
+                'Năm Sinh: 03/07/2002 ',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20,
@@ -96,17 +96,17 @@ class _PersonState extends State<Person> {
                 ),
               ),
             ),
-            /*Container(
+            Container(
               padding: const EdgeInsets.all(15),
               child: Text(
-                'Tổng Điểm: ---',
+                'Tổng Điểm: 4200',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
-                  fontSize: 20,
+                  fontSize: 30,
                   color: Color.fromARGB(255, 84, 0, 31),
                 ),
               ),
-            ),*/
+            ),
             const SizedBox(
               height: 20,
             ),
