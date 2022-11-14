@@ -47,7 +47,8 @@ class _SignInState extends State<SignIn> {
               const SizedBox(
                 height: 10,
               ),
-              /*TextFormField(
+              TextFormField(
+                obscureText: true,
                 validator: (val) {
                   return val!.isEmpty ? "Mời nhập Password" : null;
                 },
@@ -62,7 +63,7 @@ class _SignInState extends State<SignIn> {
                 onChanged: (val) {
                   password = val;
                 },
-              ),*/
+              ),
               TextFormField(
                 obscureText: true,
                 decoration: const InputDecoration(
