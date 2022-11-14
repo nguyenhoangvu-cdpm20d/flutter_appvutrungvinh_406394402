@@ -145,7 +145,7 @@ class EditProfileState extends State<EditProfile> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        'Năm sinh:                             ' +
+                        'Năm sinh:                            ' +
                             "${selectedDate.toLocal()}".split(' ')[0],
                         style: TextStyle(
                           fontSize: 17,

@@ -99,7 +99,7 @@ class _PersonState extends State<Person> {
             Container(
               padding: const EdgeInsets.all(15),
               child: Text(
-                'Tổng Điểm: 4200 ',
+                'Tổng Điểm: 4200',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 30,
