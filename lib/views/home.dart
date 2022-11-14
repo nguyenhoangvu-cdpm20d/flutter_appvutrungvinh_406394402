@@ -115,12 +115,10 @@ class _HomeState extends State<Home> {
                 //backgroundColor: Colors.pinkAccent,
                 child: CircleAvatar(
                   backgroundImage: AssetImage('images/123.JPG'),
-                 radius: 65.0,
+                  radius: 65.0,
                 ),
-                onTap: () {},
               ),
             ),
-            
             Center(
               child: ListTile(
                 leading: const Icon(
