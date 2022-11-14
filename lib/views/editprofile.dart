@@ -20,8 +20,8 @@ class EditProfileState extends State<EditProfile> {
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
+        firstDate: DateTime(1900, 1),
+        lastDate: DateTime(2100, 12, 31));
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
@@ -73,7 +73,7 @@ class EditProfileState extends State<EditProfile> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(0),
                   child: TextField(
                     //controller: txtName,
                     readOnly: false,
@@ -84,7 +84,7 @@ class EditProfileState extends State<EditProfile> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(0),
                   child: Column(
                     children: <Widget>[
                       ListTile(
@@ -123,10 +123,10 @@ class EditProfileState extends State<EditProfile> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+                    children: const <Widget>[
                       TextField(
                         keyboardType: TextInputType.number,
                         //controller: txtEmail,
@@ -145,7 +145,7 @@ class EditProfileState extends State<EditProfile> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Text(
-                        'Năm sinh: ' +
+                        'Năm sinh:                            ' +
                             "${selectedDate.toLocal()}".split(' ')[0],
                         style: TextStyle(
                           fontSize: 17,
@@ -176,53 +176,43 @@ class EditProfileState extends State<EditProfile> {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(
-                          backgroundColor: Colors.white,
-                          title: const Text(
+                        return const AlertDialog(
+                          backgroundColor: Color.fromARGB(200, 0, 0, 0),
+                          title: Text(
                             'Lưu Thông Tin Cá Nhân Thành Công',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
                             ),
                           ),
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.check_circle,
                             color: Colors.green,
                             size: 40,
                           ),
                           actionsAlignment: MainAxisAlignment.spaceBetween,
                           actions: [
-                            TextButton(
+                            /* TextButton(
                               onPressed: () {
                                 Navigator.pop(context, false);
                                 Navigator.pushAndRemoveUntil<void>(
                                   context,
                                   MaterialPageRoute<void>(
                                     // ignore: prefer_const_constructors
-                                    builder: (BuildContext context) => Home(),
+                                    builder: (BuildContext context) =>
+                                        EditProfile(),
                                   ),
                                   (Route<dynamic> route) => false,
                                 );
                               },
                               child: const Text(
-                                'OK',
+                                '                                                                                       Ok',
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.green,
                                   fontSize: 25,
                                 ),
                               ),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context, false);
-                              },
-                              child: const Text(
-                                'No',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 25,
-                                ),
-                              ),
-                            ),
+                            ),*/
                           ],
                         );
                       },
@@ -233,6 +223,18 @@ class EditProfileState extends State<EditProfile> {
                     style: TextStyle(
                       color: Colors.pink[400],
                       fontSize: 25,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    'Quay lại',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
                     ),
                   ),
                 ),
