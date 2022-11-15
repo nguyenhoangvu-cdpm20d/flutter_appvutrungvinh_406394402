@@ -16,7 +16,7 @@ Widget appBar(BuildContext context) {
           style: TextStyle(
             fontWeight: FontWeight.w600,
             fontFamily: '',
-            color: Color.fromARGB(255, 162, 4, 57),
+            color: Colors.pinkAccent,
           ),
         ),
       ]),

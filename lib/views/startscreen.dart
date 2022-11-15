@@ -10,6 +10,7 @@ class StartApp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        elevation: 0.0,
       ),
       body: Center(
         child: TextButton(
