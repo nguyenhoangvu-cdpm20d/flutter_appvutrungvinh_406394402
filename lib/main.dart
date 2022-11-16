@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/person.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/signin.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/profile/person.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/sign_up_in/signin.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/startscreen.dart';
 
 void main() {

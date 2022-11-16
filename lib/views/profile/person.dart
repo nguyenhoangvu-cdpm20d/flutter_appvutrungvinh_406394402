@@ -1,10 +1,10 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/editprofile.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/profile/editprofile.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/searchSreen.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 
-import 'create_quiz.dart';
+import '../question/create_quiz.dart';
 
 class Person extends StatefulWidget {
   @override
@@ -50,13 +50,13 @@ class _PersonState extends State<Person> {
               padding: const EdgeInsets.only(bottom: 5, top: 30),
               child: const CircleAvatar(
                 radius: 65.0,
-                //backgroundImage: AssetImage('images/123.jpg'),
+                backgroundImage: AssetImage('images/123.JPG'),
               ),
             ),
             Container(
               padding: const EdgeInsets.all(15),
               child: Text(
-                'User',
+                'Nguyen Hoang Vu',
                 style: TextStyle(
                     color: Colors.redAccent.shade700,
                     fontWeight: FontWeight.bold,
@@ -88,7 +88,7 @@ class _PersonState extends State<Person> {
             Container(
               padding: const EdgeInsets.all(15),
               child: Text(
-                'Năm Sinh: dd/mm/yyyy ',
+                'Năm Sinh: DD/MM/YYYY ',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                   fontSize: 20,

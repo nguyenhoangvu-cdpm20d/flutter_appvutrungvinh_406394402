@@ -13,7 +13,7 @@ class EditProfile extends StatefulWidget {
 enum SingingCharacter { Man, Woman }
 
 class EditProfileState extends State<EditProfile> {
-  SingingCharacter? _character = SingingCharacter.Woman;
+  SingingCharacter? _character = SingingCharacter.Man;
   DateTime selectedDate = DateTime.now();
 
   Future<void> _selectDate(BuildContext context) async {

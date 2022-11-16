@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/signin.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/sign_up_in/signin.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 
 class SignUp extends StatefulWidget {

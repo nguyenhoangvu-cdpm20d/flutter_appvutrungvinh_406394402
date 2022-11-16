@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/contact/contact_tab.dart';
 // ignore: unused_import
-import 'package:flutter_appvutrungvinh_406394402/views/create_quiz.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/person.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/signin.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/question/create_quiz.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/profile/person.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/sign_up_in/signin.dart';
 // ignore: unused_import
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/searchSreen.dart';
@@ -42,7 +43,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  int selectedIndex = 3;
+  int selectedIndex = 2;
   final Widget _myHome = MyHome();
   final Widget _mySearch = MySrearch();
   final Widget _challenge = Challenge();
@@ -57,9 +58,9 @@ class _HomeState extends State<Home> {
     } else if (selectedIndex == 1) {
       return _challenge; //thách đấu
     } else if (selectedIndex == 3) {
-      return _friend; //trang cá nhân
+      return _friend; //bạn bè
     } else {
-      return _person; //bạn bè
+      return _person; //trang cá nhân
     }
   }
 
@@ -80,6 +81,64 @@ class _HomeState extends State<Home> {
         brightness: Brightness.light,
         title: Row(
           children: [
+            IconButton(
+              onPressed: (() {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      backgroundColor: Color.fromARGB(125, 254, 0, 85),
+                      title: const Text(
+                        'Bạn có muốn đăng xuất?',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      icon: const Icon(
+                        Icons.output_rounded,
+                        color: Colors.white,
+                      ),
+                      actionsAlignment: MainAxisAlignment.spaceBetween,
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, false);
+                            Navigator.pushAndRemoveUntil<void>(
+                              context,
+                              MaterialPageRoute<void>(
+                                // ignore: prefer_const_constructors
+                                builder: (BuildContext context) => SignIn(),
+                              ),
+                              (Route<dynamic> route) => false,
+                            );
+                          },
+                          child: const Text(
+                            'Yes',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, false);
+                          },
+                          child: const Text(
+                            'No',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }),
+              icon: Icon(Icons.logout),
+              iconSize: 40,
+              color: Colors.black,
+            ),
             Container(
               padding: const EdgeInsets.only(left: 45),
               child: RichText(
@@ -107,90 +166,6 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-              child: CircleAvatar(
-                //backgroundColor: Colors.pinkAccent,
-                child: CircleAvatar(
-                  backgroundImage: AssetImage('images/123.JPG'),
-                  radius: 65.0,
-                ),
-              ),
-            ),
-            Center(
-              child: ListTile(
-                leading: const Icon(
-                  Icons.output_rounded,
-                  color: Colors.red,
-                  size: 30,
-                ),
-                title: const Text(
-                  'Đăng xuất',
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 25,
-                  ),
-                ),
-                onTap: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        backgroundColor: Color.fromARGB(125, 254, 0, 85),
-                        title: const Text(
-                          'Bạn có muốn đăng xuất?',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        icon: const Icon(
-                          Icons.output_rounded,
-                          color: Colors.white,
-                        ),
-                        actionsAlignment: MainAxisAlignment.spaceBetween,
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context, false);
-                              Navigator.pushAndRemoveUntil<void>(
-                                context,
-                                MaterialPageRoute<void>(
-                                  // ignore: prefer_const_constructors
-                                  builder: (BuildContext context) => SignIn(),
-                                ),
-                                (Route<dynamic> route) => false,
-                              );
-                            },
-                            child: const Text(
-                              'Yes',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context, false);
-                            },
-                            child: const Text(
-                              'No',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
       body: getBody(),
       bottomNavigationBar: ConvexAppBar(
           style: TabStyle.flip,
@@ -199,7 +174,7 @@ class _HomeState extends State<Home> {
           items: [
             const TabItem(icon: Icons.search, title: 'Tìm Kiếm '),
             const TabItem(icon: Icons.gamepad_outlined, title: 'Thách đấu'),
-            const TabItem(icon: Icons.house, title: '            '),
+            const TabItem(icon: Icons.house, title: 'Trang chủ'),
             const TabItem(icon: Icons.person_pin, title: 'Bạn Bè'),
             const TabItem(icon: Icons.person_outline, title: 'Trang Cá Nhân'),
           ],
@@ -321,6 +296,7 @@ class Friend extends StatelessWidget {
   //Màn hình Bạn bè
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Màn hình bạn bè"));
+    return //const Center(child: Text("Màn hình ban be "));
+        ContactTab();
   }
 }
