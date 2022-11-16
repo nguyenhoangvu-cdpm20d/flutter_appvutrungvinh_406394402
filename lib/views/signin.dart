@@ -64,17 +64,6 @@ class _SignInState extends State<SignIn> {
                   password = val;
                 },
               ),
-              TextFormField(
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
-                  labelText: 'Password',
-                  prefixIcon: Icon(
-                    Icons.lock,
-                  ),
-                ),
-              ),
               SizedBox(height: 30),
               GestureDetector(
                 onTap: () {
