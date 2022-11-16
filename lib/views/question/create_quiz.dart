@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/addquestion.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/signin.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/question/addquestion.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/sign_up_in/signin.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 
 class CreateQuiz extends StatefulWidget {
@@ -31,7 +31,7 @@ class _CreateQuizState extends State<CreateQuiz> {
                 validator: (val) =>
                     val!.isEmpty ? "Bạn hãy nhập Url ảnh" : null,
                 decoration: const InputDecoration(
-                  labelText: "Hình ảnh Url",
+                  labelText: "Hình ảnh Url ",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(30))),
                   prefixIcon: Icon(

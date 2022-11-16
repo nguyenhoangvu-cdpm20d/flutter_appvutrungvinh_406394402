@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/signin.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/home.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/sign_up_in/signup.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 
-class SignUp extends StatefulWidget {
+class SignIn extends StatefulWidget {
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignIn> createState() => _SignInState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
-  late String name, email, password;
+  late String email, password;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,25 +30,6 @@ class _SignUpState extends State<SignUp> {
               Spacer(),
               TextFormField(
                 validator: (val) {
-                  return val!.isEmpty ? "Mời nhập họ và tên" : null;
-                },
-                decoration: const InputDecoration(
-                  labelText: "Họ và tên",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
-                  prefixIcon: Icon(
-                    Icons.person,
-                  ),
-                ),
-                onChanged: (val) {
-                  name = val;
-                },
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                validator: (val) {
                   return val!.isEmpty ? "Mời nhập Email" : null;
                 },
                 decoration: const InputDecoration(
@@ -61,17 +44,18 @@ class _SignUpState extends State<SignUp> {
                   email = val;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               TextFormField(
+                obscureText: true,
                 validator: (val) {
-                  return val!.isEmpty ? "Password không trùng nhau" : null;
+                  return val!.isEmpty ? "Mời nhập Password" : null;
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(30))),
-                  labelText: "Nhập lại Password",
+                  labelText: "Password",
                   prefixIcon: Icon(
                     Icons.lock,
                   ),
@@ -80,35 +64,41 @@ class _SignUpState extends State<SignUp> {
                   password = val;
                 },
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               GestureDetector(
-                onTap: () {},
-                child: blueButton(context, "Đăng ký"),
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (context) => Home()));
+                },
+                child: blueButton(
+                  context,
+                  "Đăng nhập",
+                ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 18,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Bạn đã sẵn sàng tạo tài khoản chưa?",
+                    "Bạn chưa có tài khoản? ",
                     style: TextStyle(fontSize: 15.5),
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => SignIn()));
+                          MaterialPageRoute(builder: (context) => SignUp()));
                     },
                     child: const Text(
-                      "  Đăng nhập",
+                      "  Đăng ký",
                       style: TextStyle(
                           fontSize: 15.5, decoration: TextDecoration.underline),
                     ),
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 80,
               ),
             ],

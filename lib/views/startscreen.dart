@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/signin.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/home.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/sign_up_in/signin.dart';
 
 class StartApp extends StatelessWidget {
   const StartApp({super.key});
@@ -15,8 +16,15 @@ class StartApp extends StatelessWidget {
       body: Center(
         child: TextButton(
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => SignIn()));
+            Navigator.pop(context, false);
+            Navigator.pushAndRemoveUntil<void>(
+              context,
+              MaterialPageRoute<void>(
+                // ignore: prefer_const_constructors
+                builder: (BuildContext context) => SignIn(),
+              ),
+              (Route<dynamic> route) => false,
+            );
           },
           child: RichText(
             text: const TextSpan(

@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/home.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/signup.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/sign_up_in/signin.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 
-class SignIn extends StatefulWidget {
+class SignUp extends StatefulWidget {
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
-  late String email, password;
-
+  late String name, email, password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,10 +22,29 @@ class _SignInState extends State<SignIn> {
       body: Form(
         key: _formKey,
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 4),
+          margin: const EdgeInsets.symmetric(horizontal: 4),
           child: Column(
             children: [
               Spacer(),
+              TextFormField(
+                validator: (val) {
+                  return val!.isEmpty ? "Mời nhập họ và tên" : null;
+                },
+                decoration: const InputDecoration(
+                  labelText: "Họ và tên",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30))),
+                  prefixIcon: Icon(
+                    Icons.person,
+                  ),
+                ),
+                onChanged: (val) {
+                  name = val;
+                },
+              ),
+              SizedBox(
+                height: 7,
+              ),
               TextFormField(
                 validator: (val) {
                   return val!.isEmpty ? "Mời nhập Email" : null;
@@ -45,10 +62,9 @@ class _SignInState extends State<SignIn> {
                 },
               ),
               SizedBox(
-                height: 10,
+                height: 7,
               ),
               TextFormField(
-                obscureText: true,
                 validator: (val) {
                   return val!.isEmpty ? "Mời nhập Password" : null;
                 },
@@ -64,16 +80,29 @@ class _SignInState extends State<SignIn> {
                   password = val;
                 },
               ),
+              SizedBox(
+                height: 7,
+              ),
+              TextFormField(
+                validator: (val) {
+                  return val!.isEmpty ? "Password không trùng nhau" : null;
+                },
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30))),
+                  labelText: "Nhập lại Password",
+                  prefixIcon: Icon(
+                    Icons.lock,
+                  ),
+                ),
+                onChanged: (val) {
+                  password = val;
+                },
+              ),
               SizedBox(height: 30),
               GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (context) => Home()));
-                },
-                child: blueButton(
-                  context,
-                  "Đăng nhập",
-                ),
+                onTap: () {},
+                child: blueButton(context, "Đăng ký"),
               ),
               SizedBox(
                 height: 18,
@@ -82,16 +111,16 @@ class _SignInState extends State<SignIn> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Bạn chưa có tài khoản?",
+                    "Bạn đã sẵn sàng tạo tài khoản chưa? ",
                     style: TextStyle(fontSize: 15.5),
                   ),
                   GestureDetector(
                     onTap: () {
                       Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => SignUp()));
+                          MaterialPageRoute(builder: (context) => SignIn()));
                     },
                     child: const Text(
-                      "  Đăng ký",
+                      "  Đăng nhập",
                       style: TextStyle(
                           fontSize: 15.5, decoration: TextDecoration.underline),
                     ),
