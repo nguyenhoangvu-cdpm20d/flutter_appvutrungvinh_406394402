@@ -19,11 +19,9 @@ class searchSreen extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {},
-              icon: const Icon(
-                Icons.clear,
-                color: Colors.black,
-              ),
-            )
+              icon: Icon(Icons.search),
+              color: Colors.black,
+            ),
           ],
         ),
       ),

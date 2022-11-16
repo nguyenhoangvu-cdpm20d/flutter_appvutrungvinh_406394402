@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/home.dart';
-import 'package:flutter_appvutrungvinh_406394402/views/signup.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/sign_up_in/signup.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 
 class SignIn extends StatefulWidget {
