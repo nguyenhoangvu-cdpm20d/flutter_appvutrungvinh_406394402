@@ -1,39 +1,39 @@
 {
-    "project_info": {
-      "project_number": "450516221416",
-      "project_id": "quiz-2bf9f",
-      "storage_bucket": "quiz-2bf9f.appspot.com"
-    },
-    "client": [
-      {
-        "client_info": {
-          "mobilesdk_app_id": "1:450516221416:android:0d0b2873620d565359785d",
-          "android_client_info": {
-            "package_name": "com.example.flutter_appvutrungvinh_406394402"
-          }
-        },
-        "oauth_client": [
-          {
-            "client_id": "450516221416-68kt71uqf5tsvuijmd5778vnvfmk2aj0.apps.googleusercontent.com",
-            "client_type": 3
-          }
-        ],
-        "api_key": [
-          {
-            "current_key": "AIzaSyBcF0jU3Kh9ZsOX_rdHRvssOZtPpcTFQ3E"
-          }
-        ],
-        "services": {
-          "appinvite_service": {
-            "other_platform_oauth_client": [
-              {
-                "client_id": "450516221416-68kt71uqf5tsvuijmd5778vnvfmk2aj0.apps.googleusercontent.com",
-                "client_type": 3
-              }
-            ]
-          }
+  "project_info": {
+    "project_number": "960055851392",
+    "project_id": "vtv-app-d0566",
+    "storage_bucket": "vtv-app-d0566.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:960055851392:android:9f0c4fa613b7baab6c6965",
+        "android_client_info": {
+          "package_name": "com.example.flutter_appvutrungvinh_406394402"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "960055851392-u381rl68987mob8srv9ninn9vvj0njjn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq6P1APE1Rkositleslq71Zx9YjYIHhcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "960055851392-u381rl68987mob8srv9ninn9vvj0njjn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
-    ],
-    "configuration_version": "1"
-  }
+    }
+  ],
+  "configuration_version": "1"
+}

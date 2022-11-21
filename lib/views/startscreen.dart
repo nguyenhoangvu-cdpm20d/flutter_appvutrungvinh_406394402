@@ -1,66 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/home.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/sign_up_in/signin.dart';
+import 'package:flutter_appvutrungvinh_406394402/views/sign_up_in/signup.dart';
 
-class StartApp extends StatelessWidget {
-  const StartApp({super.key});
+class StartScreen extends StatefulWidget {
+  const StartScreen({super.key});
 
   @override
+  State<StartScreen> createState() => _StartScreenState();
+}
+
+class _StartScreenState extends State<StartScreen> {
+  @override
   Widget build(BuildContext context) {
-    AnimationController controller;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-      ),
-      body: Center(
-        child: TextButton(
-          onPressed: () {
-            Navigator.pop(context, false);
-            Navigator.pushAndRemoveUntil<void>(
-              context,
-              MaterialPageRoute<void>(
-                // ignore: prefer_const_constructors
-                builder: (BuildContext context) => SignIn(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'VTV App',
+              style: TextStyle(
+                fontSize: 48,
+                fontWeight: FontWeight.bold,
               ),
-              (Route<dynamic> route) => false,
-            );
-          },
-          child: RichText(
-            text: const TextSpan(
-              style: TextStyle(fontSize: 80),
-              children: <TextSpan>[
-                TextSpan(
-                  text: 'Quiz',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontFamily: '',
-                    color: Colors.black54,
-                    shadows: [
-                      Shadow(
-                          color: Colors.blueAccent,
-                          offset: Offset(2, 1),
-                          blurRadius: 10)
-                    ],
-                  ),
-                ),
-                TextSpan(
-                  text: 'VTV',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontFamily: '',
-                    color: Colors.pinkAccent,
-                    shadows: [
-                      Shadow(
-                          color: Colors.blueAccent,
-                          offset: Offset(2, 1),
-                          blurRadius: 10)
-                    ],
-                  ),
-                ),
-              ],
+              textAlign: TextAlign.center,
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.only(top: 12, bottom: 12),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SignIn()));
+                },
+                child: const Text(
+                  'Đăng Nhập',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.pinkAccent)),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SignUp(),
+                  ),
+                ).then((value) {
+                  if (value != null) {
+                    final snackBar = SnackBar(content: Text(value));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                });
+              },
+              child: const Text(
+                'Đăng Ký',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.pinkAccent)),
+            )
+          ],
         ),
       ),
     );
