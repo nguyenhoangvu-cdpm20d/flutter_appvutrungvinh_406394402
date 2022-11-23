@@ -58,23 +58,25 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   try {
-                    final _user = _auth.signInWithEmailAndPassword(
+                    final _user = await _auth.signInWithEmailAndPassword(
                         email: txtEmail.text, password: txtPass.text);
-                    if (_user != null) {
-                      txtEmail.clear();
-                      txtPass.clear();
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        'home',
-                        (route) => false,
-                      );
-                    } else {
-                      final snackBar = SnackBar(
-                          content: Text('Email hoặc mật khẩu không đúng'));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }
+                    await _auth.authStateChanges().listen((event) {
+                      if (event != null) {
+                        txtEmail.clear();
+                        txtPass.clear();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Home(),
+                            ));
+                      } else {
+                        final snackBar = SnackBar(
+                            content: Text('Email hoặc Mật khẩu không đúng'));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                    });
                   } catch (e) {
                     final snackBar =
                         SnackBar(content: Text('Lỗi kết nối đến Server'));
