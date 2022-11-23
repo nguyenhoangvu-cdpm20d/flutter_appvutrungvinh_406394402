@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/home.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/sign_up_in/signup.dart';
@@ -9,102 +10,89 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final _formKey = GlobalKey<FormState>();
-  late String email, password;
-
+  TextEditingController txtEmail = TextEditingController();
+  TextEditingController txtPass = TextEditingController();
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: appBar(context),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        brightness: Brightness.light,
-      ),
-      body: Form(
-        key: _formKey,
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 4),
+        appBar: AppBar(
+          title: appBar(context),
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          brightness: Brightness.light,
+        ),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Spacer(),
-              TextFormField(
-                validator: (val) {
-                  return val!.isEmpty ? "Mời nhập Email" : null;
-                },
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
-                  labelText: "Email",
-                  prefixIcon: Icon(
-                    Icons.email,
+              const Text(
+                'Đăng Nhập',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 12, bottom: 6),
+                child: TextField(
+                  controller: txtEmail,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    prefixIcon: Icon(Icons.email),
                   ),
                 ),
-                onChanged: (val) {
-                  email = val;
-                },
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                obscureText: true,
-                validator: (val) {
-                  return val!.isEmpty ? "Mời nhập Password" : null;
-                },
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
-                  labelText: "Password",
-                  prefixIcon: Icon(
-                    Icons.lock,
+              Padding(
+                padding: EdgeInsets.only(top: 12, bottom: 6),
+                child: TextField(
+                  controller: txtPass,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    prefixIcon: Icon(Icons.password),
                   ),
                 ),
-                onChanged: (val) {
-                  password = val;
-                },
               ),
-              const SizedBox(height: 30),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacement(
-                      context, MaterialPageRoute(builder: (context) => Home()));
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    final _user = await _auth.signInWithEmailAndPassword(
+                        email: txtEmail.text, password: txtPass.text);
+                    await _auth.authStateChanges().listen((event) {
+                      if (event != null) {
+                        txtEmail.clear();
+                        txtPass.clear();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Home(),
+                            ));
+                      } else {
+                        final snackBar = SnackBar(
+                            content: Text('Email hoặc Mật khẩu không đúng'));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                    });
+                  } catch (e) {
+                    final snackBar =
+                        SnackBar(content: Text('Lỗi kết nối đến Server'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
                 },
-                child: blueButton(
-                  context,
-                  "Đăng nhập",
+                child: const Text(
+                  'Đăng Nhập',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                 ),
-              ),
-              const SizedBox(
-                height: 18,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Bạn chưa có tài khoản? ",
-                    style: TextStyle(fontSize: 15.5),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => SignUp()));
-                    },
-                    child: const Text(
-                      "  Đăng ký",
-                      style: TextStyle(
-                          fontSize: 15.5, decoration: TextDecoration.underline),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 80,
-              ),
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.pinkAccent)),
+              )
             ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
