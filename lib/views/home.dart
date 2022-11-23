@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/contact/contact_tab.dart';
 // ignore: unused_import
@@ -102,6 +103,7 @@ class _HomeState extends State<Home> {
                       actions: [
                         TextButton(
                           onPressed: () {
+                            FirebaseAuth.instance.signOut();
                             Navigator.pop(context, false);
                             Navigator.pushAndRemoveUntil<void>(
                               context,
@@ -280,7 +282,7 @@ class MySrearch extends StatelessWidget {
   //Màn hình tìm kiếm
   @override
   Widget build(BuildContext context) {
-    return searchSreen();
+    return searchScreen();
   }
 }
 
