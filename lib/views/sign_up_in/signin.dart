@@ -56,23 +56,27 @@ class _SignInState extends State<SignIn> {
                   prefixIcon: Icon(Icons.password),
                 ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                try {
-                  final _user = _auth.signInWithEmailAndPassword(
-                      email: txtEmail.text, password: txtPass.text);
-                  if (_user != null) {
-                    txtEmail.clear();
-                    txtPass.clear();
-                    Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      'home',
-                      (route) => false,
-                    );
-                  } else {
-                    final snackBar = SnackBar(
-                        content: Text('Email hoặc mật khẩu không đúng'));
+              ElevatedButton(
+                onPressed: () {
+                  try {
+                    final _user = _auth.signInWithEmailAndPassword(
+                        email: txtEmail.text, password: txtPass.text);
+                    if (_user != null) {
+                      txtEmail.clear();
+                      txtPass.clear();
+                      Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        'home',
+                        (route) => false,
+                      );
+                    } else {
+                      final snackBar = SnackBar(
+                          content: Text('Email hoặc mật khẩu không đúng'));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    }
+                  } catch (e) {
+                    final snackBar =
+                        SnackBar(content: Text('Lỗi kết nối đến Server'));
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                 } catch (e) {
