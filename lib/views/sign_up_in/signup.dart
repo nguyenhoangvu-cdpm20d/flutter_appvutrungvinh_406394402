@@ -38,7 +38,8 @@ class _SignUpState extends State<SignUp> {
                 controller: txtEmail,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30)),
                   prefixIcon: Icon(Icons.email),
                 ),
               ),
@@ -49,7 +50,8 @@ class _SignUpState extends State<SignUp> {
                 controller: txtPass,
                 obscureText: true,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30)),
                   prefixIcon: Icon(Icons.password),
                 ),
               ),
@@ -60,7 +62,8 @@ class _SignUpState extends State<SignUp> {
                   final newUser = _auth.createUserWithEmailAndPassword(
                       email: txtEmail.text, password: txtPass.text);
                   if (newUser != null) {
-                    Navigator.pop(context, 'Bạn đã đăng ký thành công');
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SignIn()));
                   } else {
                     final snackBar =
                         SnackBar(content: Text('Tài khoản này không hợp lệ'));
@@ -78,7 +81,30 @@ class _SignUpState extends State<SignUp> {
               style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(Colors.pinkAccent)),
-            )
+            ),
+            SizedBox(
+              height: 18,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Bạn đã có tài khoản? ",
+                  style: TextStyle(fontSize: 15.5),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => SignIn()));
+                  },
+                  child: const Text(
+                    "  Đăng nhập",
+                    style: TextStyle(
+                        fontSize: 15.5, decoration: TextDecoration.underline),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

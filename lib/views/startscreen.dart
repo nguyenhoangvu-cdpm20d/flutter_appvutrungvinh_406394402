@@ -41,7 +41,7 @@ class _StartScreenState extends State<StartScreen> {
                     const Text(
                       'QUIZ',
                       style: TextStyle(
-                        fontSize: 55.0,
+                        fontSize: 57.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.pink,
                         shadows: [
@@ -55,7 +55,7 @@ class _StartScreenState extends State<StartScreen> {
                     const SizedBox(width: 20.0, height: 100.0),
                     DefaultTextStyle(
                       style: const TextStyle(
-                        fontSize: 55.0,
+                        fontSize: 57.0,
                         fontFamily: 'Horizon',
                         color: Colors.pink,
                         fontWeight: FontWeight.bold,

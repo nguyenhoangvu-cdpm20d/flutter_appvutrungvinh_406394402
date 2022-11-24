@@ -56,12 +56,14 @@ class _SignInState extends State<SignIn> {
                   prefixIcon: Icon(Icons.password),
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  try {
-                    final _user = _auth.signInWithEmailAndPassword(
-                        email: txtEmail.text, password: txtPass.text);
-                    if (_user != null) {
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                try {
+                  final _user = await _auth.signInWithEmailAndPassword(
+                      email: txtEmail.text, password: txtPass.text);
+                  await _auth.authStateChanges().listen((event) {
+                    if (event != null) {
                       txtEmail.clear();
                       txtPass.clear();
                       Navigator.pushNamedAndRemoveUntil(
@@ -71,14 +73,10 @@ class _SignInState extends State<SignIn> {
                       );
                     } else {
                       final snackBar = SnackBar(
-                          content: Text('Email hoặc mật khẩu không đúng'));
+                          content: Text('Email hoặc Mật khẩu không đúng'));
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     }
-                  } catch (e) {
-                    final snackBar =
-                        SnackBar(content: Text('Lỗi kết nối đến Server'));
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
+                  });
                 } catch (e) {
                   final snackBar =
                       SnackBar(content: Text('Lỗi kết nối đến Server'));
@@ -92,6 +90,29 @@ class _SignInState extends State<SignIn> {
               style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(Colors.pinkAccent)),
+            ),
+            SizedBox(
+              height: 18,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Bạn chưa có tài khoản? ",
+                  style: TextStyle(fontSize: 15.5),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => SignUp()));
+                  },
+                  child: const Text(
+                    "  Đăng ký",
+                    style: TextStyle(
+                        fontSize: 15.5, decoration: TextDecoration.underline),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
