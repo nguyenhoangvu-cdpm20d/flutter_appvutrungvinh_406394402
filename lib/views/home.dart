@@ -282,7 +282,7 @@ class MySrearch extends StatelessWidget {
   //Màn hình tìm kiếm
   @override
   Widget build(BuildContext context) {
-    return searchSreen();
+    return searchScreen();
   }
 }
 

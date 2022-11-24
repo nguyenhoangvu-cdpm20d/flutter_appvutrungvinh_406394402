@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/home.dart';
 import 'package:flutter_appvutrungvinh_406394402/views/sign_up_in/signin.dart';
@@ -20,15 +21,67 @@ class _StartScreenState extends State<StartScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text(
-              'VTV App',
-              style: TextStyle(
-                fontSize: 48,
-                fontWeight: FontWeight.bold,
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pop(context, false);
+                  Navigator.pushAndRemoveUntil<void>(
+                    context,
+                    MaterialPageRoute<void>(
+                      // ignore: prefer_const_constructors
+                      builder: (BuildContext context) => SignIn(),
+                    ),
+                    (Route<dynamic> route) => false,
+                  );
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const SizedBox(width: 20.0, height: 100.0),
+                    const Text(
+                      'QUIZ',
+                      style: TextStyle(
+                        fontSize: 57.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink,
+                        shadows: [
+                          Shadow(
+                              color: Colors.blueAccent,
+                              offset: Offset(6, 1),
+                              blurRadius: 10)
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 20.0, height: 100.0),
+                    DefaultTextStyle(
+                      style: const TextStyle(
+                        fontSize: 57.0,
+                        fontFamily: 'Horizon',
+                        color: Colors.pink,
+                        fontWeight: FontWeight.bold,
+                        shadows: [
+                          Shadow(
+                              color: Colors.blueAccent,
+                              offset: Offset(6, 1),
+                              blurRadius: 10)
+                        ],
+                      ),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          RotateAnimatedText('VTV'),
+                          RotateAnimatedText('VU'),
+                          RotateAnimatedText('TRUNG'),
+                          RotateAnimatedText('VINH'),
+                        ],
+                        onTap: () {
+                          print("Tap Event");
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              textAlign: TextAlign.center,
-            ),
-            Padding(
+              /*Padding(
               padding: const EdgeInsets.only(top: 12, bottom: 12),
               child: ElevatedButton(
                 onPressed: () {
@@ -65,7 +118,8 @@ class _StartScreenState extends State<StartScreen> {
               style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(Colors.pinkAccent)),
-            )
+            )*/
+            ),
           ],
         ),
       ),

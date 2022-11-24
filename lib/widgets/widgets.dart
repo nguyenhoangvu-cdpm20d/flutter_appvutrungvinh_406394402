@@ -39,9 +39,8 @@ Widget blueButton(
         color: Colors.pink, borderRadius: BorderRadius.circular(30)),
     alignment: Alignment.center,
     width: /* buttonWidth != null ? buttonWidth : */ MediaQuery.of(context)
-            .size
-            .width -
-        48,
+        .size
+        .width,
     child: Text(
       label,
       style: TextStyle(color: Colors.white, fontSize: 16),
