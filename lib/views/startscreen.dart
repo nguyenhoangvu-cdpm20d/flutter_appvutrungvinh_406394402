@@ -15,6 +15,7 @@ class _StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5),
         child: Column(
@@ -35,13 +36,14 @@ class _StartScreenState extends State<StartScreen> {
                   );
                 },
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    const SizedBox(width: 20.0, height: 100.0),
+                    const SizedBox(width: 25.0, height: 100.0),
                     const Text(
                       'QUIZ',
+                      textAlign: TextAlign.left,
                       style: TextStyle(
-                        fontSize: 57.0,
+                        fontSize: 75.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.pink,
                         shadows: [
@@ -52,10 +54,11 @@ class _StartScreenState extends State<StartScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(width: 20.0, height: 100.0),
+                    const SizedBox(width: 25.0, height: 100.0),
                     DefaultTextStyle(
+                      textAlign: TextAlign.right,
                       style: const TextStyle(
-                        fontSize: 57.0,
+                        fontSize: 80.0,
                         fontFamily: 'Horizon',
                         color: Colors.pink,
                         fontWeight: FontWeight.bold,
@@ -69,56 +72,33 @@ class _StartScreenState extends State<StartScreen> {
                       child: AnimatedTextKit(
                         animatedTexts: [
                           RotateAnimatedText('VTV'),
-                          RotateAnimatedText('VU'),
-                          RotateAnimatedText('TRUNG'),
-                          RotateAnimatedText('VINH'),
+                          RotateAnimatedText('VTV'),
+                          RotateAnimatedText('VTV'),
+                          RotateAnimatedText('VTV'),
+                          RotateAnimatedText('VTV'),
+                          RotateAnimatedText('VTV'),
+                          RotateAnimatedText('VTV'),
+                          RotateAnimatedText('VTV'),
+                          RotateAnimatedText('VTV'),
+                          RotateAnimatedText('VTV'),
+                          RotateAnimatedText('VTV'),
+                          RotateAnimatedText('VTV'),
                         ],
                         onTap: () {
-                          print("Tap Event");
+                          Navigator.pushAndRemoveUntil<void>(
+                            context,
+                            MaterialPageRoute<void>(
+                              // ignore: prefer_const_constructors
+                              builder: (BuildContext context) => SignIn(),
+                            ),
+                            (Route<dynamic> route) => false,
+                          );
                         },
                       ),
                     ),
                   ],
                 ),
               ),
-              /*Padding(
-              padding: const EdgeInsets.only(top: 12, bottom: 12),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignIn()));
-                },
-                child: const Text(
-                  'Đăng Nhập',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(Colors.pinkAccent)),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SignUp(),
-                  ),
-                ).then((value) {
-                  if (value != null) {
-                    final snackBar = SnackBar(content: Text(value));
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
-                });
-              },
-              child: const Text(
-                'Đăng Ký',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-              ),
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.pinkAccent)),
-            )*/
             ),
           ],
         ),
