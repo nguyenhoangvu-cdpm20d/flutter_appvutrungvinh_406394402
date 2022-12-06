@@ -38,7 +38,10 @@ class _StartScreenState extends State<StartScreen> {
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: <Widget>[
-                    const SizedBox(width: 25.0, height: 100.0),
+                    const SizedBox(
+                      width: 25.0,
+                      height: 100.0,
+                    ),
                     const Text(
                       'QUIZ',
                       textAlign: TextAlign.left,
