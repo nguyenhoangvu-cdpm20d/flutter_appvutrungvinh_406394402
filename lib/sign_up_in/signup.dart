@@ -17,7 +17,7 @@ class _SignUpState extends State<SignUp> {
 
   final ref = FirebaseDatabase.instance.ref().child('users');
   final reff = FirebaseDatabase.instance.ref().child('history');
-
+  bool _passwordVisible = false;
   final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
@@ -46,6 +46,7 @@ class _SignUpState extends State<SignUp> {
                 controller: txtName,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
+                  hintText: 'Tên đăng nhập',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30)),
                   prefixIcon: Icon(Icons.person),
@@ -58,6 +59,7 @@ class _SignUpState extends State<SignUp> {
                 controller: txtEmail,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
+                  hintText: 'Email',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30)),
                   prefixIcon: Icon(Icons.email),
@@ -68,11 +70,27 @@ class _SignUpState extends State<SignUp> {
               padding: EdgeInsets.only(top: 12, bottom: 6),
               child: TextField(
                 controller: txtPass,
-                obscureText: true,
+                obscureText: !_passwordVisible,
                 decoration: InputDecoration(
+                  hintText: 'Mật khẩu',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30)),
                   prefixIcon: Icon(Icons.password),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      // Based on passwordVisible state choose the icon
+                      _passwordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Theme.of(context).primaryColorDark,
+                    ),
+                    onPressed: () {
+                      // Update the state i.e. toogle the state of passwordVisible variable
+                      setState(() {
+                        _passwordVisible = !_passwordVisible;
+                      });
+                    },
+                  ),
                 ),
               ),
             ),
@@ -80,32 +98,31 @@ class _SignUpState extends State<SignUp> {
               padding: EdgeInsets.only(top: 12, bottom: 6),
               child: TextField(
                 controller: txtPass2,
-                obscureText: true,
+                obscureText: !_passwordVisible,
                 decoration: InputDecoration(
+                  hintText: 'Nhập lại mật khẩu',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30)),
                   prefixIcon: Icon(Icons.password),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      // Based on passwordVisible state choose the icon
+                      _passwordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Theme.of(context).primaryColorDark,
+                    ),
+                    onPressed: () {
+                      // Update the state i.e. toogle the state of passwordVisible variable
+                      setState(() {
+                        _passwordVisible = !_passwordVisible;
+                      });
+                    },
+                  ),
                 ),
               ),
             ),
             ElevatedButton(
-              // onPressed: () async {
-              //   try {
-              //     final newUser = _auth.createUserWithEmailAndPassword(
-              //         email: txtEmail.text, password: txtPass.text);
-              //     if (newUser != null) {
-              //       Navigator.push(context,
-              //           MaterialPageRoute(builder: (context) => SignIn()));
-              //     } else {
-              //       final snackBar =
-              //           SnackBar(content: Text('Tài khoản này không hợp lệ'));
-              //       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              //     }
-              //   } catch (e) {
-              //     final snackBar = SnackBar(content: Text('Có lỗi xảy ra rồi'));
-              //     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              //   }
-              // },
               onPressed: () async {
                 if (txtPass.text == txtPass2.text &&
                     txtPass2.text.length >= 8 &&
@@ -122,12 +139,12 @@ class _SignUpState extends State<SignUp> {
                         'name': txtName.text,
                         'password': txtPass.text,
                         'email': txtEmail.text,
-                        'SDT': ' ',
-                        'image':
-                            'https://vivureviews.com/wp-content/uploads/2022/08/avatar-vo-danh-9.png',
-                        'uid': uid,
                         'diem': 0,
                         'vang': 100,
+                        'SDT': '+84',
+                        'image':
+                            'https://thespiritofsaigon.net/wp-content/uploads/2022/10/avatar-vo-danh-44.jpg',
+                        'uid': uid
                       });
                       reff.child(uid).set({
                         'name': txtName.text,
@@ -136,11 +153,12 @@ class _SignUpState extends State<SignUp> {
                         'diem': 0,
                         'thoigian': 0,
                         'sl': 0,
+                        'vang': 0,
                         'uid': uid
                       });
                       Navigator.pop(context, 'Đăng Ký Thành Công!');
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => SignIn()));
+                          MaterialPageRoute(builder: ((context) => SignIn())));
                     } else {
                       final snackBar = SnackBar(
                           content: Text('Tài khoản này không hợp lệ!'));
@@ -172,6 +190,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 GestureDetector(
                   onTap: () {
+                    Navigator.pop(context, false);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => SignIn()));
                   },

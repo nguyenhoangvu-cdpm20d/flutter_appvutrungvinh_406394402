@@ -1,10 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_appvutrungvinh_406394402/lich_su/LSObject.dart';
-import 'package:flutter_appvutrungvinh_406394402/profile/object.dart';
+import 'package:flutter_appvutrungvinh_406394402/widgets/LSObject.dart';
+import 'package:flutter_appvutrungvinh_406394402/widgets/object.dart';
 
 class LichSu extends StatefulWidget {
   @override
@@ -15,10 +14,11 @@ class LichSu extends StatefulWidget {
 
 class LichSuState extends State<LichSu> {
   List<UserObject> lsUser = [];
-  String uidUser = "";
+  String uidUser = '';
   List<LSObject> lsLichSu = [];
-  String uidLichSu = "";
+  String uidLichSu = '';
   final ref = FirebaseDatabase.instance.ref();
+  @override
   void initState() {
     super.initState();
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
@@ -37,7 +37,7 @@ class LichSuState extends State<LichSu> {
   }
 
   void userData() {
-    ref.child("users").onChildAdded.listen((data) {
+    ref.child('users').onChildAdded.listen((data) {
       UserObject userObject = UserObject.fromJson(data.snapshot.value as Map);
       lsUser.add(userObject);
       setState(() {});
@@ -45,26 +45,26 @@ class LichSuState extends State<LichSu> {
   }
 
   void LichSuData() {
-    ref.child("history").onChildAdded.listen((data) {
+    ref.child('history').onChildAdded.listen((data) {
       LSObject lsObject = LSObject.fromJson(data.snapshot.value as Map);
       lsLichSu.add(lsObject);
-      setState(() {});
+      //setState(() {});
     });
   }
 
   TenChuDe() {
     for (int i = 0; i < lsLichSu.length; i++) {
       if (lsLichSu[i].uid == uidLichSu) {
-        return '${lsLichSu[i].tenchude}';
+        return lsLichSu[i].tenchude;
       }
     }
-    return uidLichSu;
+    return 'Chưa có thông tin';
   }
 
   CheDo() {
     for (int i = 0; i < lsLichSu.length; i++) {
       if (lsLichSu[i].uid == uidLichSu) {
-        return '${lsLichSu[i].chedo}';
+        return lsLichSu[i].chedo;
       }
     }
     return 'Chưa có thông tin';
@@ -73,7 +73,7 @@ class LichSuState extends State<LichSu> {
   ThoiGian() {
     for (int i = 0; i < lsLichSu.length; i++) {
       if (lsLichSu[i].uid == uidLichSu) {
-        return '${lsLichSu[i].thoigian}';
+        return lsLichSu[i].thoigian;
       }
     }
     return 'Chưa có thông tin';
@@ -82,16 +82,16 @@ class LichSuState extends State<LichSu> {
   Diem() {
     for (int i = 0; i < lsLichSu.length; i++) {
       if (lsLichSu[i].uid == uidLichSu) {
-        return '${lsLichSu[i].diem}';
+        return lsLichSu[i].diem;
       }
     }
-    return 'Chưa có thông tin';
+    return '';
   }
 
   Sl() {
     for (int i = 0; i < lsLichSu.length; i++) {
       if (lsLichSu[i].uid == uidLichSu) {
-        return '${lsLichSu[i].sl}';
+        return lsLichSu[i].sl;
       }
     }
     return 'Chưa có thông tin';
@@ -100,7 +100,7 @@ class LichSuState extends State<LichSu> {
   Ten() {
     for (int i = 0; i < lsUser.length; i++) {
       if (lsUser[i].uid == uidUser) {
-        return '${lsUser[i].name}';
+        return lsUser[i].name;
       }
     }
     return 'Chưa có thông tin';
@@ -109,7 +109,7 @@ class LichSuState extends State<LichSu> {
   Vang() {
     for (int i = 0; i < lsUser.length; i++) {
       if (lsUser[i].uid == uidUser) {
-        return '${lsUser[i].vang}';
+        return lsUser[i].vang;
       }
     }
     return 'Chưa có thông tin';
@@ -118,7 +118,7 @@ class LichSuState extends State<LichSu> {
   avatar() {
     for (int i = 0; i < lsUser.length; i++) {
       if (lsUser[i].uid == uidUser) {
-        return '${lsUser[i].image}';
+        return lsUser[i].image;
       }
     }
     return '';
@@ -141,7 +141,7 @@ class LichSuState extends State<LichSu> {
             child: Column(
               children: [
                 Text(
-                    "__________________________________________________________"),
+                    '__________________________________________________________'),
                 Container(
                   margin: EdgeInsets.only(),
                   child: Column(
@@ -162,7 +162,7 @@ class LichSuState extends State<LichSu> {
                       Container(
                         margin: EdgeInsets.all(15),
                         child: Text(
-                          '${Ten()}',
+                          Ten(),
                           style: TextStyle(
                               color: Colors.redAccent.shade700,
                               fontWeight: FontWeight.bold,
@@ -173,7 +173,7 @@ class LichSuState extends State<LichSu> {
                   ),
                 ),
                 Text(
-                    "__________________________________________________________"),
+                    '__________________________________________________________'),
                 Container(
                   margin: EdgeInsets.all(15),
                   child: Column(
@@ -182,14 +182,14 @@ class LichSuState extends State<LichSu> {
                         children: [
                           Container(
                             child: Text(
-                              "Chủ đề: ",
+                              'Chủ đề: ',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
                           ),
                           Container(
                             child: Text(
-                              "${TenChuDe()}",
+                              '${TenChuDe()}',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
@@ -203,7 +203,7 @@ class LichSuState extends State<LichSu> {
                           Container(
                             padding: EdgeInsets.only(top: 15),
                             child: Text(
-                              "Chế độ: ",
+                              'Chế độ: ',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -211,7 +211,7 @@ class LichSuState extends State<LichSu> {
                           Container(
                             padding: EdgeInsets.only(top: 15),
                             child: Text(
-                              "${CheDo()}",
+                              '${CheDo()}',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
@@ -225,7 +225,7 @@ class LichSuState extends State<LichSu> {
                           Container(
                             padding: EdgeInsets.only(top: 15),
                             child: Text(
-                              "Câu trả lời đúng: ",
+                              'Câu trả lời đúng: ',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -233,7 +233,7 @@ class LichSuState extends State<LichSu> {
                           Container(
                             padding: EdgeInsets.only(top: 15),
                             child: Text(
-                              "${Sl()}",
+                              '${Sl()}/10 câu',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
@@ -247,7 +247,7 @@ class LichSuState extends State<LichSu> {
                           Container(
                             padding: EdgeInsets.only(top: 15),
                             child: Text(
-                              "Thời gian: ",
+                              'Thời gian: ',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -255,7 +255,7 @@ class LichSuState extends State<LichSu> {
                           Container(
                             padding: EdgeInsets.only(top: 15),
                             child: Text(
-                              "${ThoiGian()}",
+                              '${ThoiGian()}/50 giây',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
@@ -269,7 +269,7 @@ class LichSuState extends State<LichSu> {
                           Container(
                             padding: EdgeInsets.only(top: 15),
                             child: Text(
-                              "Điểm: ",
+                              'Điểm: ',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -277,7 +277,7 @@ class LichSuState extends State<LichSu> {
                           Container(
                             padding: EdgeInsets.only(top: 15),
                             child: Text(
-                              "${Diem()}",
+                              '${Diem()}/100 điểm',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
@@ -291,7 +291,7 @@ class LichSuState extends State<LichSu> {
                           Container(
                             padding: EdgeInsets.only(top: 15),
                             child: Text(
-                              "Vàng: ",
+                              'Vàng: ',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -299,7 +299,7 @@ class LichSuState extends State<LichSu> {
                           Container(
                             padding: EdgeInsets.only(top: 15),
                             child: Text(
-                              "${Vang()}",
+                              '${Vang()}',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,

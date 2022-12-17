@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_appvutrungvinh_406394402/Screen/home.dart';
 import 'package:flutter_appvutrungvinh_406394402/Game_Screen/study/Flutter/Diff/db_connect_flutter.dart';
 import 'package:flutter_appvutrungvinh_406394402/Game_Screen/study/Flutter/Easy/db_connect_flutter.dart';
-import 'package:flutter_appvutrungvinh_406394402/lich_su/LSObject.dart';
+import 'package:flutter_appvutrungvinh_406394402/widgets/LSObject.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/constants.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/next_button.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/option_card.dart';
@@ -14,7 +14,7 @@ import 'package:flutter_appvutrungvinh_406394402/widgets/question_models.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/question_widget.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/result_box_music.dart';
 
-import '../../../../profile/object.dart';
+import '../../../../widgets/object.dart';
 
 class Flutter_Diff_QuestionScreen extends StatefulWidget {
   const Flutter_Diff_QuestionScreen({super.key});

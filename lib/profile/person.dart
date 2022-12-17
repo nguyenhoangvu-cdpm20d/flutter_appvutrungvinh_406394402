@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appvutrungvinh_406394402/profile/editprofile.dart';
-import 'package:flutter_appvutrungvinh_406394402/profile/object.dart';
+import 'package:flutter_appvutrungvinh_406394402/widgets/object.dart';
 import 'package:http/http.dart' as http;
 
 class Person extends StatefulWidget {
@@ -18,6 +18,8 @@ class _PersonState extends State<Person> {
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtSdt = TextEditingController();
   final ref = FirebaseDatabase.instance.ref();
+  bool uidVisible = false;
+
   List<UserObject> lsUser = [];
   String uidUser = "";
   @override
@@ -29,12 +31,13 @@ class _PersonState extends State<Person> {
       }
     });
     userData(); // kt va hien thi thong tin
+    setState(() {});
   }
 
   Ten() {
     for (int i = 0; i < lsUser.length; i++) {
       if (lsUser[i].uid == uidUser) {
-        return '${lsUser[i].name}';
+        return lsUser[i].name;
       }
     }
     return 'Chưa có thông tin';
@@ -43,7 +46,7 @@ class _PersonState extends State<Person> {
   Mail() {
     for (int i = 0; i < lsUser.length; i++) {
       if (lsUser[i].uid == uidUser) {
-        return '${lsUser[i].email}';
+        return lsUser[i].email;
       }
     }
     return 'Chưa có thông tin';
@@ -52,7 +55,7 @@ class _PersonState extends State<Person> {
   SoDienThoai() {
     for (int i = 0; i < lsUser.length; i++) {
       if (lsUser[i].uid == uidUser) {
-        return '${lsUser[i].SDT}';
+        return lsUser[i].SDT;
       }
     }
     return 'Chưa có thông tin';
@@ -61,25 +64,25 @@ class _PersonState extends State<Person> {
   Vang() {
     for (int i = 0; i < lsUser.length; i++) {
       if (lsUser[i].uid == uidUser) {
-        return '${lsUser[i].vang}';
+        return lsUser[i].vang;
       }
     }
-    return 'khong co';
+    return 'Chưa có thông tin';
   }
 
   Diem() {
     for (int i = 0; i < lsUser.length; i++) {
       if (lsUser[i].uid == uidUser) {
-        return '${lsUser[i].diem}';
+        return lsUser[i].diem;
       }
     }
-    return 'khong co';
+    return 'Chưa có thông tin';
   }
 
   avatar() {
     for (int i = 0; i < lsUser.length; i++) {
       if (lsUser[i].uid == uidUser) {
-        return '${lsUser[i].image}';
+        return lsUser[i].image;
       }
     }
     return '';
@@ -97,7 +100,7 @@ class _PersonState extends State<Person> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 229, 184, 244),
       appBar: AppBar(
         //title: appBar(context),
         backgroundColor: Colors.transparent,
@@ -127,7 +130,7 @@ class _PersonState extends State<Person> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.only(bottom: 5, top: 30),
+              padding: const EdgeInsets.only(bottom: 25, top: 10),
               height: 200,
               width: 200,
               child: avatar() == ''
@@ -139,7 +142,7 @@ class _PersonState extends State<Person> {
                     ),
             ),
             Container(
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.only(left: 15, right: 15),
               child: Text(
                 '' + Ten(),
                 style: TextStyle(
@@ -148,48 +151,118 @@ class _PersonState extends State<Person> {
                     fontSize: 25),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              child: Text(
-                'Email: ' + Mail(),
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20,
-                  color: Colors.pink.shade600,
-                ),
+            Text(
+                '-----------------------------------------------------------------------'),
+            Padding(
+              padding: const EdgeInsets.only(left: 50),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(15),
+                    child: Text(
+                      'Email:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                        color: Colors.pink,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: Text(
+                      Mail(),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              child: Text(
-                'Số điện thoại: ' + SoDienThoai(),
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20,
-                  color: Colors.pink.shade600,
-                ),
+            Padding(
+              padding: const EdgeInsets.only(left: 50),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(15),
+                    child: Text(
+                      'Số điện thoại:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                        color: Colors.pink,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: Text(
+                      SoDienThoai(),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              child: Text(
-                'Điểm: ' + Diem(),
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20,
-                  color: Colors.pink.shade600,
-                ),
+            Padding(
+              padding: const EdgeInsets.only(left: 50),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(15),
+                    child: Text(
+                      'Điểm:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                        color: Colors.pink,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: Text(
+                      '${Diem()}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            Container(
-              padding: const EdgeInsets.all(15),
-              child: Text(
-                'Vàng: ' + Vang(),
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 20,
-                  color: Colors.pink.shade600,
-                ),
+            Padding(
+              padding: const EdgeInsets.only(left: 50),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(15),
+                    child: Text(
+                      'Vàng:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                        color: Colors.pink,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    child: Text(
+                      '${Vang()}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             const SizedBox(

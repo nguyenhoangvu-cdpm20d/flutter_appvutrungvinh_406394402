@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:loadmore/loadmore.dart';
 import 'package:flutter_appvutrungvinh_406394402/Screen/home.dart';
-import 'package:flutter_appvutrungvinh_406394402/profile/object.dart';
+import 'package:flutter_appvutrungvinh_406394402/widgets/object.dart';
 import 'package:flutter_appvutrungvinh_406394402/profile/person.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 
@@ -58,7 +58,7 @@ class EditProfileState extends State<EditProfile> {
   Ten() {
     for (int i = 0; i < lsUser.length; i++) {
       if (lsUser[i].uid == uidUser) {
-        return '${lsUser[i].name}';
+        return lsUser[i].name;
       }
     }
     return 'Chưa có thông tin';
@@ -67,7 +67,7 @@ class EditProfileState extends State<EditProfile> {
   SoDienThoai() {
     for (int i = 0; i < lsUser.length; i++) {
       if (lsUser[i].uid == uidUser) {
-        return '${lsUser[i].SDT}';
+        return lsUser[i].SDT;
       }
     }
     return 'Chưa có thông tin';
@@ -76,7 +76,7 @@ class EditProfileState extends State<EditProfile> {
   avatar() {
     for (int i = 0; i < lsUser.length; i++) {
       if (lsUser[i].uid == uidUser) {
-        return '${lsUser[i].image}';
+        return lsUser[i].image;
       }
     }
     return '';
@@ -129,9 +129,10 @@ class EditProfileState extends State<EditProfile> {
                   padding: EdgeInsets.only(left: 50, right: 50, bottom: 20),
                   child: TextField(
                     controller: txtName,
+                    textCapitalization: TextCapitalization.words,
                     decoration: InputDecoration(
                       hintText: 'Nhập Tên Đăng Nhập',
-                      labelText: '${Ten()}',
+                      labelText: Ten(),
                       border: UnderlineInputBorder(),
                     ),
                   ),
@@ -143,7 +144,7 @@ class EditProfileState extends State<EditProfile> {
                     controller: txtSoDienThoai,
                     decoration: InputDecoration(
                       hintText: 'Nhập Số Điện Thoại',
-                      labelText: '${SoDienThoai()}',
+                      labelText: SoDienThoai(),
                       border: UnderlineInputBorder(),
                     ),
                   ),
@@ -154,7 +155,7 @@ class EditProfileState extends State<EditProfile> {
                     controller: txtAvatar,
                     decoration: InputDecoration(
                       hintText: 'Link Hình Ảnh',
-                      labelText: '${avatar()}',
+                      labelText: avatar(),
                       border: UnderlineInputBorder(),
                     ),
                   ),
@@ -179,7 +180,11 @@ class EditProfileState extends State<EditProfile> {
                 // ),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: ((context) => Home())),
+                      (Route<dynamic> route) => false,
+                    );
                     if (txtName.text.isNotEmpty) {
                       FirebaseAuth auth = FirebaseAuth.instance;
                       final ref =
@@ -211,7 +216,8 @@ class EditProfileState extends State<EditProfile> {
                           );
                         },
                       );
-                    } else if (txtSoDienThoai.text.isNotEmpty) {
+                    } else if (txtSoDienThoai.text.isNotEmpty &&
+                        txtSoDienThoai.text.length == 10) {
                       FirebaseAuth auth = FirebaseAuth.instance;
                       final ref =
                           FirebaseDatabase.instance.ref().child('users');

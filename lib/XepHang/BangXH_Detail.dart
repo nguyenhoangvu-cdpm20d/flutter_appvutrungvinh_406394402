@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_appvutrungvinh_406394402/profile/object.dart';
+import 'package:flutter_appvutrungvinh_406394402/widgets/object.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,7 +20,7 @@ class BXHDetail extends StatefulWidget {
 class BXHDetailState extends State<BXHDetail> {
   final ref = FirebaseDatabase.instance.ref();
   List<UserObject> lsUser = [];
-  String uidUser = "";
+  String uidUser = '';
   bool kt = false;
   @override
   void initState() {
@@ -40,7 +40,7 @@ class BXHDetailState extends State<BXHDetail> {
         return '${lsUser[i].name}';
       }
     }
-    return 'khong co';
+    return 'Chưa có thông tin';
   }
 
   Mail() {
@@ -49,11 +49,20 @@ class BXHDetailState extends State<BXHDetail> {
         return '${lsUser[i].email}';
       }
     }
-    return 'khong co';
+    return 'Chưa có thông tin';
+  }
+
+  SDT() {
+    for (int i = 0; i < lsUser.length; i++) {
+      if (lsUser[i].uid == uidUser) {
+        return '${lsUser[i].SDT}';
+      }
+    }
+    return 'Chưa có thông tin';
   }
 
   void userData() {
-    ref.child("users").onChildAdded.listen((data) {
+    ref.child('users').onChildAdded.listen((data) {
       UserObject userObject = UserObject.fromJson(data.snapshot.value as Map);
       lsUser.add(userObject);
       setState(() {});
@@ -74,7 +83,7 @@ class BXHDetailState extends State<BXHDetail> {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "Trang cá nhân",
+            'Trang cá nhân',
             style: GoogleFonts.jotiOne(),
           ),
           centerTitle: true,
@@ -86,100 +95,116 @@ class BXHDetailState extends State<BXHDetail> {
                   children: [
                     Container(
                       height: 800,
+                      width: 500,
                       color: Color.fromARGB(255, 229, 184, 244),
                       child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                                margin: EdgeInsets.only(top: 70),
-                                height: 150,
-                                width: 500,
-                                child: Hero(
-                                  tag:
-                                      'productimage_${this.widget.product.name}',
-                                  child: avatar() == ''
-                                      ? CircleAvatar(
-                                          child: Text('No Image'),
-                                        )
-                                      : CircleAvatar(
-                                          backgroundImage:
-                                              CachedNetworkImageProvider(
-                                                  avatar()),
-                                        ),
-                                )),
+                              padding:
+                                  const EdgeInsets.only(bottom: 5, top: 30),
+                              height: 200,
+                              width: 200,
+                              child: avatar() == ''
+                                  ? CircleAvatar(
+                                      child: Text('No Image'),
+                                    )
+                                  : CircleAvatar(
+                                      backgroundImage:
+                                          CachedNetworkImageProvider(
+                                              this.widget.product.image),
+                                    ),
+                            ),
                             Container(
-                                margin: EdgeInsets.only(left: 20),
+                                margin: EdgeInsets.only(left: 10, top: 10),
                                 child: Text(
                                   'Score: ${this.widget.product.diem}',
-                                  style: GoogleFonts.jotiOne(fontSize: 18),
+                                  style: GoogleFonts.jotiOne(fontSize: 25),
                                 )),
                             Container(
                               padding: EdgeInsets.only(left: 15),
                               child: Text(
-                                  "_________________________________________________________"),
+                                  '_________________________________________________________'),
                             ),
                             Container(
-                                child: Column(
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(
-                                      left: 100,
-                                      right: 40,
-                                      bottom: 40,
-                                      top: 50),
-                                  child: Text(
-                                      "Tên:  " + this.widget.product.name,
-                                      style: GoogleFonts.jotiOne(
-                                          fontSize: 23,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black)),
-                                ),
-                                Container(
-                                    margin: EdgeInsets.only(
-                                      left: 70,
-                                    ),
-                                    child: RichText(
-                                      text: TextSpan(
-                                        text:
-                                            'Email: ${this.widget.product.email}',
-                                        style: GoogleFonts.jotiOne(
-                                            color: Colors.black,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold),
+                              child: Column(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(top: 30),
+                                        child: Text('Tên:',
+                                            style: GoogleFonts.jotiOne(
+                                                fontSize: 23,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black)),
                                       ),
-                                    )),
-                                Container(
-                                  width: 150,
-                                  height: 50,
-                                  margin:
-                                      const EdgeInsets.only(top: 90, left: 85),
-                                  //padding: EdgeInsets.all(15),
-                                  child: ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          const MaterialStatePropertyAll<Color>(
-                                              Color.fromARGB(
-                                                  255, 102, 190, 39)),
-                                      shape: MaterialStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                        ),
+                                      Container(
+                                        child: Text(this.widget.product.name,
+                                            style: GoogleFonts.jotiOne(
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.pink)),
                                       ),
-                                    ),
-                                    child: Text('Trở về',
-                                        style:
-                                            GoogleFonts.jotiOne(fontSize: 28)),
-                                    onPressed: () {
-                                      Navigator.pop(
-                                        context,
-                                      );
-                                    },
+                                    ],
                                   ),
-                                ),
-                              ],
-                            )),
+                                  Column(
+                                    children: [
+                                      Container(
+                                          margin: EdgeInsets.only(
+                                            top: 30,
+                                          ),
+                                          child: RichText(
+                                            text: TextSpan(
+                                              text: 'Email:',
+                                              style: GoogleFonts.jotiOne(
+                                                  color: Colors.black,
+                                                  fontSize: 23,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          )),
+                                      Container(
+                                          child: RichText(
+                                        text: TextSpan(
+                                          text: this.widget.product.email,
+                                          style: GoogleFonts.jotiOne(
+                                              color: Colors.pink,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      )),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Container(
+                                          margin: EdgeInsets.only(
+                                            top: 30,
+                                          ),
+                                          child: RichText(
+                                            text: TextSpan(
+                                              text: 'Số điện thoại:',
+                                              style: GoogleFonts.jotiOne(
+                                                  color: Colors.black,
+                                                  fontSize: 23,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          )),
+                                      Container(
+                                          child: RichText(
+                                        text: TextSpan(
+                                          text: this.widget.product.SDT,
+                                          style: GoogleFonts.jotiOne(
+                                              color: Colors.pink,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      )),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
                           ]),
                     ),
                   ],
