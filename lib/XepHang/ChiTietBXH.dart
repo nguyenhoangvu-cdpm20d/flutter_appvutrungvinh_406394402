@@ -4,7 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appvutrungvinh_406394402/XepHang/BangXH_Detail.dart';
-import 'package:flutter_appvutrungvinh_406394402/profile/object.dart';
+import 'package:flutter_appvutrungvinh_406394402/widgets/object.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChiTietBXH extends StatefulWidget {
@@ -17,7 +17,7 @@ class ChiTietBXH extends StatefulWidget {
 class ChiTietBXHState extends State<ChiTietBXH> {
   final ref = FirebaseDatabase.instance.ref();
   List<UserObject> lsUser = [];
-  String uidUser = "";
+  String uidUser = '';
   bool kt = false;
 
   @override
@@ -33,7 +33,7 @@ class ChiTietBXHState extends State<ChiTietBXH> {
   }
 
   void userData() {
-    ref.child("users").onChildAdded.listen((data) {
+    ref.child('users').onChildAdded.listen((data) {
       UserObject userObject = UserObject.fromJson(data.snapshot.value as Map);
       lsUser.add(userObject);
       setState(() {});
@@ -59,6 +59,7 @@ class ChiTietBXHState extends State<ChiTietBXH> {
             itemBuilder: (context, index) {
               return Card(
                 //color: Colors.yellow,
+
                 child: ListTile(
                   title: Text(
                     lsUser[index].name,

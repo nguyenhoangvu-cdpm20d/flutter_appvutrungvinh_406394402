@@ -13,6 +13,8 @@ class _SignInState extends State<SignIn> {
   TextEditingController txtName = TextEditingController();
   TextEditingController txtPass = TextEditingController();
   final _auth = FirebaseAuth.instance;
+  bool _passwordVisible = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +42,7 @@ class _SignInState extends State<SignIn> {
                 controller: txtEmail,
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
+                  hintText: 'Email',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30)),
                   prefixIcon: Icon(Icons.email),
@@ -50,11 +53,27 @@ class _SignInState extends State<SignIn> {
               padding: EdgeInsets.only(top: 12, bottom: 6),
               child: TextField(
                 controller: txtPass,
-                obscureText: true,
+                obscureText: !_passwordVisible,
                 decoration: InputDecoration(
+                  hintText: 'Mật khẩu',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30)),
                   prefixIcon: Icon(Icons.password),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      // Based on passwordVisible state choose the icon
+                      _passwordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Theme.of(context).primaryColorDark,
+                    ),
+                    onPressed: () {
+                      // Update the state i.e. toogle the state of passwordVisible variable
+                      setState(() {
+                        _passwordVisible = !_passwordVisible;
+                      });
+                    },
+                  ),
                 ),
               ),
             ),
@@ -104,6 +123,7 @@ class _SignInState extends State<SignIn> {
                 ),
                 GestureDetector(
                   onTap: () {
+                    Navigator.pop(context, false);
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => SignUp()));
                   },

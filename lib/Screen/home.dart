@@ -14,7 +14,7 @@ import 'package:flutter_appvutrungvinh_406394402/profile/person.dart';
 import 'package:flutter_appvutrungvinh_406394402/sign_up_in/signin.dart';
 // ignore: unused_import
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
-import 'package:flutter_appvutrungvinh_406394402/Screen/searchSreen.dart';
+import 'package:flutter_appvutrungvinh_406394402/Screen/shopSreen.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 class Home extends StatefulWidget {
@@ -30,20 +30,20 @@ class _HomeState extends State<Home> {
 
   int selectedIndex = 2;
   final Widget _myHome = MyHome();
-  final Widget _mySearch = MySrearch();
-  final Widget _challenge = Challenge();
+  final Widget shop = Shop();
+  final Widget _rank = Rank();
   final Widget _person = PerSon();
-  final Widget _friend = Friend();
+  final Widget _history = History();
 
   Widget getBody() {
     if (selectedIndex == 2) {
       return _myHome; //trang chủ
     } else if (selectedIndex == 0) {
-      return _mySearch; //tìm kiếm
+      return shop; //tìm kiếm
     } else if (selectedIndex == 1) {
-      return _challenge; //thách đấu
+      return _rank; //thách đấu
     } else if (selectedIndex == 3) {
-      return _friend; //bạn bè
+      return _history; //lịch sử
     } else {
       return _person; //trang cá nhân
     }
@@ -65,66 +65,8 @@ class _HomeState extends State<Home> {
         brightness: Brightness.light,
         title: Row(
           children: [
-            IconButton(
-              onPressed: (() {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      backgroundColor: Color.fromARGB(255, 229, 184, 244),
-                      title: const Text(
-                        'Bạn có muốn đăng xuất?',
-                        style: TextStyle(
-                          color: Colors.pink,
-                        ),
-                      ),
-                      icon: const Icon(
-                        Icons.output_rounded,
-                        color: Colors.pink,
-                      ),
-                      actionsAlignment: MainAxisAlignment.spaceBetween,
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            //FirebaseAuth.instance.signOut();
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                // ignore: prefer_const_constructors
-                                builder: (BuildContext context) => SignIn(),
-                              ),
-                              (Route<dynamic> route) => false,
-                            );
-                          },
-                          child: const Text(
-                            'Yes',
-                            style: TextStyle(
-                              color: Colors.pink,
-                            ),
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text(
-                            'No',
-                            style: TextStyle(
-                              color: Colors.pink,
-                            ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }),
-              icon: Icon(Icons.logout),
-              iconSize: 40,
-              color: Colors.black,
-            ),
             Container(
-              padding: const EdgeInsets.only(left: 45),
+              padding: const EdgeInsets.only(left: 100),
               child: RichText(
                 text: const TextSpan(
                   style: TextStyle(fontSize: 50),
@@ -147,6 +89,72 @@ class _HomeState extends State<Home> {
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(left: 25),
+              child: IconButton(
+                onPressed: (() {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        backgroundColor: Color.fromARGB(255, 229, 184, 244),
+                        title: const Text(
+                          'Bạn có muốn đăng xuất?',
+                          style: TextStyle(
+                            color: Colors.pink,
+                          ),
+                        ),
+                        icon: const Icon(
+                          Icons.output_rounded,
+                          color: Colors.pink,
+                        ),
+                        actionsAlignment: MainAxisAlignment.spaceBetween,
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              //FirebaseAuth.instance.signOut();
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  // ignore: prefer_const_constructors
+                                  builder: (BuildContext context) => SignIn(),
+                                ),
+                                (Route<dynamic> route) => false,
+                              );
+                            },
+                            child: const Text(
+                              'Yes',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 32, 109, 9),
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text(
+                              'No',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 241, 20, 20),
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }),
+                icon: Icon(Icons.logout),
+                iconSize: 40,
+                color: Colors.black,
+              ),
+            ),
           ],
         ),
       ),
@@ -159,7 +167,7 @@ class _HomeState extends State<Home> {
             const TabItem(icon: Icons.shopping_cart, title: 'Cửa hàng'),
             const TabItem(icon: Icons.bar_chart_sharp, title: 'Xếp hạng'),
             const TabItem(icon: Icons.house, title: 'Trang chủ'),
-            const TabItem(icon: Icons.history, title: 'Bạn Bè'),
+            const TabItem(icon: Icons.history, title: 'Lịch sử'),
             const TabItem(icon: Icons.person_outline, title: 'Trang Cá Nhân'),
           ],
           initialActiveIndex: 2,
@@ -294,7 +302,7 @@ class MyHome extends StatelessWidget {
   }
 }
 
-class Challenge extends StatelessWidget {
+class Rank extends StatelessWidget {
   //Màn hình thách đấu
   @override
   Widget build(BuildContext context) {
@@ -302,7 +310,7 @@ class Challenge extends StatelessWidget {
   }
 }
 
-class MySrearch extends StatelessWidget {
+class Shop extends StatelessWidget {
   //Màn hình tìm kiếm
   @override
   Widget build(BuildContext context) {
@@ -318,8 +326,8 @@ class PerSon extends StatelessWidget {
   }
 }
 
-class Friend extends StatelessWidget {
-  //Màn hình Bạn bè
+class History extends StatelessWidget {
+  //Màn hình Lịch Sử
   @override
   Widget build(BuildContext context) {
     return //const Center(child: Text("Màn hình ban be "));

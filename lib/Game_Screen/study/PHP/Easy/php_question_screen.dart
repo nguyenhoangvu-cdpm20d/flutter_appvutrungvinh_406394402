@@ -7,8 +7,8 @@ import 'package:flutter_appvutrungvinh_406394402/Screen/home.dart';
 
 import 'package:flutter_appvutrungvinh_406394402/Game_Screen/study/PHP/Diff/db_connect_php.dart';
 import 'package:flutter_appvutrungvinh_406394402/Game_Screen/study/PHP/Easy/db_connect_php.dart';
-import 'package:flutter_appvutrungvinh_406394402/lich_su/LSObject.dart';
-import 'package:flutter_appvutrungvinh_406394402/profile/object.dart';
+import 'package:flutter_appvutrungvinh_406394402/widgets/LSObject.dart';
+import 'package:flutter_appvutrungvinh_406394402/widgets/object.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/constants.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/next_button.dart';
 import 'package:flutter_appvutrungvinh_406394402/widgets/option_card.dart';

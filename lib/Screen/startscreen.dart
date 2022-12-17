@@ -54,6 +54,7 @@ class _StartScreenState extends State<StartScreen> {
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           fontSize: 75.0,
+                          fontWeight: FontWeight.bold,
                           color: Colors.pink,
                           shadows: [
                             Shadow(
