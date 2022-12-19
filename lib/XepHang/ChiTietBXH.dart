@@ -51,6 +51,7 @@ class ChiTietBXHState extends State<ChiTietBXH> {
 
   @override
   Widget build(BuildContext context) {
+    int i = 0;
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 229, 184, 244),
         body: ListView.builder(
@@ -67,11 +68,15 @@ class ChiTietBXHState extends State<ChiTietBXH> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  leading: Hero(
-                    tag: 'productimage_${lsUser[index].email}',
-                    child: CircleAvatar(
-                      backgroundImage:
-                          CachedNetworkImageProvider(lsUser[index].image),
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.deepPurple,
+                    radius: 20,
+                    child: Text(
+                      '${++i}',
+                      style: GoogleFonts.poppins(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                   trailing: Text(
