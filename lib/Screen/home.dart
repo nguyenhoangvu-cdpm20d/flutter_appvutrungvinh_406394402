@@ -126,7 +126,7 @@ class _HomeState extends State<Home> {
                               );
                             },
                             child: const Text(
-                              'Yes',
+                              'Đồng ý',
                               style: TextStyle(
                                   color: Color.fromARGB(255, 32, 109, 9),
                                   fontSize: 30,
@@ -138,7 +138,7 @@ class _HomeState extends State<Home> {
                               Navigator.pop(context);
                             },
                             child: const Text(
-                              'No',
+                              'Đóng',
                               style: TextStyle(
                                   color: Color.fromARGB(255, 241, 20, 20),
                                   fontSize: 30,
