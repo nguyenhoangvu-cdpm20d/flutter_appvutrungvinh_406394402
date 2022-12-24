@@ -196,26 +196,9 @@ class EditProfileState extends State<EditProfile> {
                           });
                         }
                       }
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return const AlertDialog(
-                            backgroundColor: Color.fromARGB(200, 0, 0, 0),
-                            title: Text(
-                              'Lưu Thông Tin Cá Nhân Thành Công',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            icon: Icon(
-                              Icons.check_circle,
-                              color: Colors.green,
-                              size: 40,
-                            ),
-                            actionsAlignment: MainAxisAlignment.spaceBetween,
-                          );
-                        },
-                      );
+                      final snackBar =
+                          SnackBar(content: Text('Lưu thông tin thành công'));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     } else if (txtSoDienThoai.text.isNotEmpty &&
                         txtSoDienThoai.text.length == 10) {
                       FirebaseAuth auth = FirebaseAuth.instance;
@@ -228,26 +211,9 @@ class EditProfileState extends State<EditProfile> {
                           });
                         }
                       }
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return const AlertDialog(
-                            backgroundColor: Color.fromARGB(200, 0, 0, 0),
-                            title: Text(
-                              'Lưu Thông Tin Cá Nhân Thành Công',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            icon: Icon(
-                              Icons.check_circle,
-                              color: Colors.green,
-                              size: 40,
-                            ),
-                            actionsAlignment: MainAxisAlignment.spaceBetween,
-                          );
-                        },
-                      );
+                      final snackBar =
+                          SnackBar(content: Text('Lưu thông tin thất bại'));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     } else if (txtAvatar.text.isNotEmpty) {
                       FirebaseAuth auth = FirebaseAuth.instance;
                       final ref =
@@ -259,47 +225,13 @@ class EditProfileState extends State<EditProfile> {
                           });
                         }
                       }
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return const AlertDialog(
-                            backgroundColor: Color.fromARGB(200, 0, 0, 0),
-                            title: Text(
-                              'Lưu Thông Tin Cá Nhân Thành Công',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            icon: Icon(
-                              Icons.check_circle,
-                              color: Colors.green,
-                              size: 40,
-                            ),
-                            actionsAlignment: MainAxisAlignment.spaceBetween,
-                          );
-                        },
-                      );
+                      final snackBar =
+                          SnackBar(content: Text('Lưu thông tin thành công'));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     } else {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return const AlertDialog(
-                            backgroundColor: Color.fromARGB(200, 0, 0, 0),
-                            title: Text(
-                              'Lưu Thông Tin Cá Nhân Thất Bại',
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            icon: Icon(
-                              Icons.remove_circle,
-                              color: Colors.red,
-                              size: 40,
-                            ),
-                            actionsAlignment: MainAxisAlignment.spaceBetween,
-                          );
-                        },
-                      );
+                      final snackBar =
+                          SnackBar(content: Text('Lưu thông tin thất bại'));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     }
                   },
                   child: Text(

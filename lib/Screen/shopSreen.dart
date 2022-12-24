@@ -278,26 +278,9 @@ class searchScreenState extends State<searchScreen> {
                     (Route<dynamic> route) => false,
                   );
                   if (txtSeri.text.isNotEmpty && (txtSeri.text.length == 13)) {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const AlertDialog(
-                          backgroundColor: Color.fromARGB(200, 0, 0, 0),
-                          title: Text(
-                            'Nạp Tiền Thành Công',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                          icon: Icon(
-                            Icons.check_circle,
-                            color: Colors.green,
-                            size: 40,
-                          ),
-                          actionsAlignment: MainAxisAlignment.spaceBetween,
-                        );
-                      },
-                    );
+                    final snackBar =
+                        SnackBar(content: Text('Nạp tiền thành công'));
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   } else {
                     final snackBar =
                         SnackBar(content: Text('Mã Seri có ít nhất 13 ký tự'));
