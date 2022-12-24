@@ -58,7 +58,7 @@ class LichSuState extends State<LichSu> {
         return lsLichSu[i].tenchude;
       }
     }
-    return 'Chưa có thông tin';
+    return '...';
   }
 
   CheDo() {
@@ -67,7 +67,7 @@ class LichSuState extends State<LichSu> {
         return lsLichSu[i].chedo;
       }
     }
-    return 'Chưa có thông tin';
+    return '...';
   }
 
   ThoiGian() {
@@ -76,7 +76,7 @@ class LichSuState extends State<LichSu> {
         return lsLichSu[i].thoigian;
       }
     }
-    return 'Chưa có thông tin';
+    return '...';
   }
 
   Diem() {
@@ -94,7 +94,7 @@ class LichSuState extends State<LichSu> {
         return lsLichSu[i].sl;
       }
     }
-    return 'Chưa có thông tin';
+    return '...';
   }
 
   Ten() {
@@ -103,7 +103,7 @@ class LichSuState extends State<LichSu> {
         return lsUser[i].name;
       }
     }
-    return 'Chưa có thông tin';
+    return '...';
   }
 
   Vang() {
@@ -112,7 +112,7 @@ class LichSuState extends State<LichSu> {
         return lsUser[i].vang;
       }
     }
-    return 'Chưa có thông tin';
+    return '...';
   }
 
   avatar() {

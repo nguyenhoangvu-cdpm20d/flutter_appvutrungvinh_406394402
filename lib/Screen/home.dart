@@ -1,17 +1,21 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_appvutrungvinh_406394402/Screen/game_screen/music_screen.dart';
 import 'package:flutter_appvutrungvinh_406394402/Screen/game_screen/sport_screen.dart';
 import 'package:flutter_appvutrungvinh_406394402/Screen/game_screen/study_screen.dart';
 import 'package:flutter_appvutrungvinh_406394402/XepHang/ChiTietBXH.dart';
 import 'package:flutter_appvutrungvinh_406394402/lich_su/LichSu.dart';
-import 'package:flutter_appvutrungvinh_406394402/services/contact/contact_tab.dart';
 // ignore: unused_import
 import 'package:flutter_appvutrungvinh_406394402/question/create_quiz.dart';
 import 'package:flutter_appvutrungvinh_406394402/profile/person.dart';
+import 'package:flutter_appvutrungvinh_406394402/services/contact/contact_detail.dart';
+import 'package:flutter_appvutrungvinh_406394402/services/contact/contact_tab.dart';
 import 'package:flutter_appvutrungvinh_406394402/sign_up_in/signin.dart';
+import 'package:flutter_appvutrungvinh_406394402/widgets/object.dart';
 // ignore: unused_import
 import 'package:flutter_appvutrungvinh_406394402/widgets/widgets.dart';
 import 'package:flutter_appvutrungvinh_406394402/Screen/shopSreen.dart';
@@ -55,44 +59,247 @@ class _HomeState extends State<Home> {
     });
   }
 
+  final ref = FirebaseDatabase.instance.ref();
+
+  List<UserObject> lsUser = [];
+  String uidUser = "";
+  @override
+  void initState() {
+    super.initState();
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user != null) {
+        uidUser = user.uid;
+      }
+    });
+    userData(); // kt va hien thi thong tin
+    setState(() {});
+  }
+
+  void userData() {
+    ref.child("users").onChildAdded.listen((data) {
+      UserObject userObject = UserObject.fromJson(data.snapshot.value as Map);
+      lsUser.add(userObject);
+      setState(() {});
+    });
+  }
+
+  Vang() {
+    for (int i = 0; i < lsUser.length; i++) {
+      if (lsUser[i].uid == uidUser) {
+        return lsUser[i].vang;
+      }
+    }
+    return 'Chưa có thông tin';
+  }
+
+  Diem() {
+    for (int i = 0; i < lsUser.length; i++) {
+      if (lsUser[i].uid == uidUser) {
+        return lsUser[i].diem;
+      }
+    }
+    return 'Chưa có thông tin';
+  }
+
+  avatar() {
+    for (int i = 0; i < lsUser.length; i++) {
+      if (lsUser[i].uid == uidUser) {
+        return lsUser[i].image;
+      }
+    }
+    return '';
+  }
+
+  Ten() {
+    for (int i = 0; i < lsUser.length; i++) {
+      if (lsUser[i].uid == uidUser) {
+        return lsUser[i].name;
+      }
+    }
+    return 'Chưa có thông tin';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 244, 70, 128),
-        //backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        brightness: Brightness.light,
-        title: Row(
+      drawer: Drawer(
+        backgroundColor: Color.fromARGB(255, 229, 184, 244),
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: [
-            Container(
-              padding: const EdgeInsets.only(left: 100),
-              child: RichText(
-                text: const TextSpan(
-                  style: TextStyle(fontSize: 50),
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: 'Quiz',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontFamily: '',
-                            color: Colors.black)),
-                    TextSpan(
-                      text: 'VTV',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontFamily: '',
-                        color: Color.fromARGB(255, 162, 4, 57),
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.pink,
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    height: 120,
+                    width: 120,
+                    child: avatar() == ''
+                        ? CircleAvatar(
+                            child: Text('No Image'),
+                          )
+                        : CircleAvatar(
+                            backgroundImage:
+                                CachedNetworkImageProvider(avatar()),
+                          ),
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(left: 0),
+                        child: Text(
+                          '' + Ten(),
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 229, 184, 244),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 50, left: 20),
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Text(
+                                'Điểm: ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              child: Text(
+                                '${Diem()}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10, left: 20),
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Text(
+                                'Vàng: ',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              child: Text(
+                                '${Vang()}',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 25),
-              child: IconButton(
-                onPressed: (() {
+            ListTile(
+              leading: const Icon(
+                Icons.person,
+                color: Colors.red,
+                size: 35,
+              ),
+              title: Text(
+                'Trang cá nhân',
+                style: TextStyle(fontSize: 25),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    // ignore: prefer_const_constructors
+                    builder: (BuildContext context) => PerSon(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.history,
+                color: Colors.orange,
+                size: 35,
+              ),
+              title: Text(
+                'Lịch sử chơi',
+                style: TextStyle(fontSize: 25),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    // ignore: prefer_const_constructors
+                    builder: (BuildContext context) => LichSu(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.favorite_outlined,
+                color: Colors.red,
+                size: 35,
+              ),
+              title: Text(
+                'Bạn bè',
+                style: TextStyle(fontSize: 25),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    // ignore: prefer_const_constructors
+                    builder: (BuildContext context) => ContactTab(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.settings,
+                color: Colors.orange,
+                size: 35,
+              ),
+              title: Text(
+                'Cài đặt',
+                style: TextStyle(fontSize: 25),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+                leading: const Icon(
+                  Icons.logout,
+                  color: Colors.red,
+                  size: 35,
+                ),
+                title: Text(
+                  'Đăng xuất',
+                  style: TextStyle(fontSize: 25),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
                   showDialog(
                     context: context,
                     builder: (context) {
@@ -150,9 +357,39 @@ class _HomeState extends State<Home> {
                     },
                   );
                 }),
-                icon: Icon(Icons.logout),
-                iconSize: 40,
-                color: Colors.black,
+          ],
+        ),
+      ),
+      backgroundColor: Colors.yellow,
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 244, 70, 128),
+        //backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        brightness: Brightness.light,
+        title: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.only(left: 50),
+              child: RichText(
+                text: const TextSpan(
+                  style: TextStyle(fontSize: 50),
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: 'Quiz',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontFamily: '',
+                            color: Colors.black)),
+                    TextSpan(
+                      text: 'VTV',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontFamily: '',
+                        color: Color.fromARGB(255, 162, 4, 57),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

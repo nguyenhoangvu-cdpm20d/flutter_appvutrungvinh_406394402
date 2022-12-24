@@ -18,7 +18,6 @@ class _PersonState extends State<Person> {
   TextEditingController txtEmail = TextEditingController();
   TextEditingController txtSdt = TextEditingController();
   final ref = FirebaseDatabase.instance.ref();
-  bool uidVisible = false;
 
   List<UserObject> lsUser = [];
   String uidUser = "";
